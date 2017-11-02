@@ -1,0 +1,17 @@
+uuid: 14519129-a64b-483e-8fc6-b29952d4fc99
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: team_member_teaser
+label: 'Team member teaser'
+effects:
+  8147d61e-8ef7-454f-87fe-2300d1b8d0af:
+    uuid: 8147d61e-8ef7-454f-87fe-2300d1b8d0af
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 150
+      height: 150
+      crop_type: focal_point

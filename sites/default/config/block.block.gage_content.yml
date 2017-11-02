@@ -1,0 +1,26 @@
+uuid: 3bad734f-a82a-4941-9a08-0efb47aea434
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - gage
+third_party_settings:
+  block_class:
+    classes: block--main-content
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: gage_content
+theme: gage
+region: content
+weight: 1
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

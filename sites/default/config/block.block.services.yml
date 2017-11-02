@@ -1,0 +1,35 @@
+uuid: 3d88f880-ec3d-4c49-a030-41e1906d6978
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:90d1ffe7-9a5b-44d1-94e5-27519ee8972b'
+  module:
+    - block_class
+    - block_content
+    - system
+  theme:
+    - gage
+third_party_settings:
+  block_class:
+    classes: block--home-services
+id: services
+theme: gage
+region: after_content
+weight: -7
+provider: null
+plugin: 'block_content:90d1ffe7-9a5b-44d1-94e5-27519ee8972b'
+settings:
+  id: 'block_content:90d1ffe7-9a5b-44d1-94e5-27519ee8972b'
+  label: services
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

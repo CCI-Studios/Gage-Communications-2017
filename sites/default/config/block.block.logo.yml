@@ -1,0 +1,35 @@
+uuid: ec5740e9-ffe5-413a-89ea-520155f49965
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:e7d850f0-94e0-4255-b83f-4ac05bd3340c'
+  module:
+    - block_class
+    - block_content
+    - system
+  theme:
+    - gage
+third_party_settings:
+  block_class:
+    classes: block--splash-logo
+id: logo
+theme: gage
+region: splash
+weight: 0
+provider: null
+plugin: 'block_content:e7d850f0-94e0-4255-b83f-4ac05bd3340c'
+settings:
+  id: 'block_content:e7d850f0-94e0-4255-b83f-4ac05bd3340c'
+  label: Logo
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

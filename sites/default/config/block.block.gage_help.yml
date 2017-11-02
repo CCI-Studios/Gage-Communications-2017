@@ -1,0 +1,22 @@
+uuid: f5c9c690-5fb8-41ab-bc92-9363b6d31dbc
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - gage
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: gage_help
+theme: gage
+region: content
+weight: -4
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

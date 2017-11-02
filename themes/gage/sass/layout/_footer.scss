@@ -1,0 +1,140 @@
+.layout-footer
+{
+  background: black;
+  color: white;
+  clear: both;
+  padding: 75px 25px;
+
+  & > div
+  {
+    max-width: 1260px;
+    margin: 0 auto;
+  }
+  a
+  {
+    color: white;
+    text-decoration: none;
+
+    &:hover
+    {
+      text-decoration: underline;
+    }
+  }
+}
+
+.block--footer-logo
+{
+  float: left;
+  margin-right: 45px;
+}
+
+.block--footer-find-us
+{
+  float: left;
+  position: relative;
+  padding: 20px 45px 20px 250px;
+  background: url(../images/bg-findus.png) no-repeat top left;
+  margin-right: 45px;
+  
+  h2
+  {
+    font-size: 2.25em;
+    line-height: 1;
+    margin-bottom: 25px;
+  }
+  p
+  {
+    font-size: 1.0625em;
+    line-height: 2;
+  }
+}
+
+.block--footer-contact-us
+{
+  float: right;
+  position: relative;
+  width: 300px;
+  padding: 20px 0;
+
+  &:before
+  {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 68px;
+    width: 100%;
+    border-top: 1px solid white;
+  }
+
+  h2
+  {
+    font-size: 2.25em;
+    line-height: 1;
+    margin-bottom: 25px;
+  }
+  p
+  {
+    font-size: 1.0625em;
+    line-height: 2;
+  }
+  .ig, .in
+  {
+    font-size: 0;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    vertical-align: top;
+  }
+  .ig
+  {
+    background-image: url(../images/social-ig-white.svg);
+  }
+  .in
+  {
+    background-image: url(../images/social-in-white.svg);
+  }
+}
+
+.footer-bottom
+{
+  clear: both;
+  padding-top: 45px;
+  
+  & > div
+  {
+    padding: 40px 0;
+    border-top: 2px solid white;
+  }
+}
+
+.block--footer-menu
+{
+  float: left;
+
+  .menu
+  {
+    list-style: none;
+
+    li
+    {
+      float: left;
+      margin-right: 30px;
+    }
+    a
+    {
+      text-transform: uppercase;
+      font-size: 0.875em;
+    }
+  }
+}
+
+.copyright
+{
+  @include headingfont();
+  float: right;
+  font-size: 0.9375em;
+}

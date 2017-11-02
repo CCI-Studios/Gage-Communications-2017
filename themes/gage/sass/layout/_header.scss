@@ -1,0 +1,121 @@
+.layout-top
+{
+  height: 203px;
+  padding: 45px 25px;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+
+  &:after
+  {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  & > div
+  {
+    max-width: 1260px;
+    margin: 0 auto;
+  }
+}
+.menu-fixed
+{
+  .layout-top
+  {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  .layout-main
+  {
+    padding-top: 203px;
+  }
+}
+
+.region-header-left
+{
+  float: left;
+  margin-right: 45px;
+}
+
+.region-header-right
+{
+  float: right;
+  margin-left: 45px;
+}
+
+.block--logo
+{
+  img
+  {
+    display: block;
+    height: auto;
+    max-width: 100%;
+  }
+}
+
+.block--social-header
+{
+  .field--name-body
+  {
+    ul
+    {
+      list-style: none;
+    }
+    li
+    {
+      display: inline-block;
+    }
+    a
+    {
+      font-size: 0;
+      display: block;
+      width: 15px;
+      height: 15px;
+      padding: 5px;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    .ig
+    {
+      background-image: url(../images/social-ig-black.svg);
+    }
+    .in
+    {
+      background-image: url(../images/social-in-black.svg);
+    }
+  }
+}
+
+.block--main-menu
+{
+  text-align: center;
+
+  .menu
+  {
+    list-style: none;
+    line-height: 113px;
+
+    li
+    {
+      display: inline-block;
+      line-height: 1.5;
+    }
+    a
+    {
+      color: black;
+      font-size: 0.9375em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: block;
+      padding: 5px 12px;
+
+      &:hover
+      {
+        text-decoration: underline;
+      }
+    }
+  }
+}

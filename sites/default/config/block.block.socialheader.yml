@@ -1,0 +1,29 @@
+uuid: 510bfaba-6297-4c92-9d29-3dc77860548d
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:c8b50d70-0129-4432-81fa-e17eac01e7ef'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - gage
+third_party_settings:
+  block_class:
+    classes: block--social-header
+id: socialheader
+theme: gage
+region: header_right
+weight: 0
+provider: null
+plugin: 'block_content:c8b50d70-0129-4432-81fa-e17eac01e7ef'
+settings:
+  id: 'block_content:c8b50d70-0129-4432-81fa-e17eac01e7ef'
+  label: 'Social header'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

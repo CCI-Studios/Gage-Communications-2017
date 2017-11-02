@@ -1,0 +1,28 @@
+uuid: 7072fb97-ee25-4aca-9ae0-9d51a29f1a0e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: team_members
+label: 'Team members'
+handler: simple
+handler_configuration: {  }
+entity_settings:
+  target_type: node
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      team_member: team_member
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+    auto_entityqueue:
+      auto_add: 1
+      insert_front: 0
+queue_settings:
+  min_size: 0
+  max_size: 0
+  act_as_queue: false
+  reverse_in_admin: false

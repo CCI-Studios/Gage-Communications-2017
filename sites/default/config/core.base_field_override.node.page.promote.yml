@@ -1,11 +1,9 @@
-uuid: 27921a0a-1f2a-4d49-8aa7-33032ae62fa2
+uuid: be68079a-369a-449a-a775-04355d16c10a
 langcode: en
 status: true
 dependencies:
   config:
     - node.type.page
-_core:
-  default_config_hash: fPUEnm4T5zfZRr3ttDUqq7yCDd2uW3clWD-pvos4tlQ
 id: node.page.promote
 field_name: promote
 entity_type: node
@@ -13,7 +11,7 @@ bundle: page
 label: 'Promoted to front page'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value:
   -
     value: 0

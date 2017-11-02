@@ -1,0 +1,26 @@
+name: Gage Communications
+type: theme
+description: 'Gage Communications theme'
+core: 8.x
+libraries:
+  - gage/global
+base theme: classy
+regions:
+  splash: Splash
+  header_left: Header Left
+  navigation: Navigation
+  header_right: Header Right
+  before_content: Before Content
+  content: Content
+  after_content: After Content
+  sidebar: Sidebar
+  footer: Footer
+  footer_bottom: Footer Bottom
+libraries-override:
+  classy/base:
+    css:
+      component:
+        css/components/button.css: false
+        css/components/link.css: false
+        css/components/links.css: false
+        css/components/menu.css: false

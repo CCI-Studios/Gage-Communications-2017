@@ -1,0 +1,19 @@
+uuid: ac2e297f-4f9e-419b-9fed-5aae5500a8ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_title
+    - node.type.team_member
+id: node.team_member.field_title
+field_name: field_title
+entity_type: node
+bundle: team_member
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

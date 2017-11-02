@@ -1,0 +1,34 @@
+uuid: 60daa6e5-3865-4260-9df6-a5e79eb56b17
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.team_members
+  module:
+    - block_class
+    - system
+    - views
+  theme:
+    - gage
+third_party_settings:
+  block_class:
+    classes: block--home-team
+id: views_block__team_members_block_1
+theme: gage
+region: after_content
+weight: -6
+provider: null
+plugin: 'views_block:team_members-block_1'
+settings:
+  id: 'views_block:team_members-block_1'
+  label: 'our team'
+  provider: views
+  label_display: visible
+  views_label: 'our team'
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

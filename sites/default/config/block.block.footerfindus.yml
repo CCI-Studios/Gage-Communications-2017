@@ -1,0 +1,29 @@
+uuid: 221cc066-ae93-4ac2-826c-4bb963c23d0c
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:27ef3737-d24f-4ffc-a2d4-c4d55fa67d43'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - gage
+third_party_settings:
+  block_class:
+    classes: block--footer-find-us
+id: footerfindus
+theme: gage
+region: footer
+weight: -5
+provider: null
+plugin: 'block_content:27ef3737-d24f-4ffc-a2d4-c4d55fa67d43'
+settings:
+  id: 'block_content:27ef3737-d24f-4ffc-a2d4-c4d55fa67d43'
+  label: 'Footer Find Us'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

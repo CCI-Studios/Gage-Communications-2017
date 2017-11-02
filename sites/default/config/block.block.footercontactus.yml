@@ -1,0 +1,29 @@
+uuid: 0c8de543-6fbb-47b2-83c0-ef2e9ced37be
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:b9353e73-39d2-41fd-9736-41cf1ddfb4c7'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - gage
+third_party_settings:
+  block_class:
+    classes: block--footer-contact-us
+id: footercontactus
+theme: gage
+region: footer
+weight: -4
+provider: null
+plugin: 'block_content:b9353e73-39d2-41fd-9736-41cf1ddfb4c7'
+settings:
+  id: 'block_content:b9353e73-39d2-41fd-9736-41cf1ddfb4c7'
+  label: 'Footer Contact Us'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

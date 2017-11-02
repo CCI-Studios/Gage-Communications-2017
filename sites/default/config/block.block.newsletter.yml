@@ -1,0 +1,29 @@
+uuid: b868fe83-4c89-4f44-a579-bee5ce2a7962
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:5a0e6967-8701-4b51-86fd-8f07766c7e08'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - gage
+third_party_settings:
+  block_class:
+    classes: block--newsletter
+id: newsletter
+theme: gage
+region: after_content
+weight: 0
+provider: null
+plugin: 'block_content:5a0e6967-8701-4b51-86fd-8f07766c7e08'
+settings:
+  id: 'block_content:5a0e6967-8701-4b51-86fd-8f07766c7e08'
+  label: Newsletter
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

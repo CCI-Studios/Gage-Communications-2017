@@ -1,0 +1,154 @@
+.path-frontpage
+{
+  .layout-content
+  {
+    background: url(../images/bg-home-g.svg) no-repeat 5% top;
+    background-size: auto 100%;
+  }
+}
+
+.block--home-services
+{
+  padding: 80px 25px;
+  background: url(../images/bg-whiteboard.jpg) no-repeat center center;
+  background-size: cover;
+  color: white;
+
+  & > div
+  {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  h2
+  {
+    font-size: 2.75em;
+    text-align: center;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid white;
+    line-height: normal;
+  }
+  .services
+  {
+    list-style: none;
+    text-align: center;
+    margin: 0;
+
+    li
+    {
+      display: inline-block;
+      width: 140px;
+      margin: 0 15px 30px 15px;
+      vertical-align: top;
+    }
+    a
+    {
+      display: block;
+      color: white;
+      text-transform: uppercase;
+      text-decoration: none;
+
+      &:hover
+      {
+        text-decoration: underline;
+      }
+      &:before
+      {
+        content: "";
+        display: block;
+        height: 120px;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+    }
+  }
+  .pr:before
+  {
+    background-image: url(../images/icon-pr.svg);
+  }
+  .partnerships:before
+  {
+    background-image: url(../images/icon-partnerships.svg);
+  }
+  .seo:before
+  {
+    background-image: url(../images/icon-seo.svg);
+  }
+  .creative:before
+  {
+    background-image: url(../images/icon-creative.svg);
+  }
+  .media:before
+  {
+    background-image: url(../images/icon-media.svg);
+  }
+}
+
+.block--home-team
+{
+  clear: both;
+  padding: 80px 25px;
+
+  & > div
+  {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  h2
+  {
+    font-size: 2.75em;
+    text-align: center;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid black;
+    line-height: normal;
+  }
+}
+
+.block--newsletter
+{
+  clear: both;
+  background: #eeeeee;
+  padding: 80px 25px;
+  text-align: center;
+
+  label
+  {
+    display: inline-block;
+    line-height: 40px;
+    vertical-align: top;
+    text-transform: uppercase;
+    margin-right: 10px;
+  }
+  input[type=email]
+  {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 38px;
+    height: 40px;
+    border: 0;
+    border-bottom: 2px solid black;
+    padding: 0 15px;
+    width: 295px;
+    max-width: 100%;
+    background: transparent;
+    box-sizing: border-box;
+    margin-right: 20px;
+  }
+  input[type=submit]
+  {
+    color: white;
+    background: black;
+    border-radius: 0;
+    border: 0;
+    height: 40px;
+    line-height: 40px;
+    width: 140px;
+    padding: 0;
+    text-align: center;
+    text-transform: uppercase;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+}

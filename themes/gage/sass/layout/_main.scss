@@ -1,0 +1,32 @@
+.layout-main
+{
+  h1
+  {
+    font-size: 3.25em;
+    line-height: normal;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid black;
+  }
+  p
+  {
+    margin-bottom: 1.5em;
+  }
+  ul, ol
+  {
+    margin-bottom: 1.5em;
+    margin-left: 30px;
+  }
+  li
+  {
+    margin-left: 25px;
+  }
+}
+
+.region-content
+{
+  clear: both;
+  padding: 100px 25px;
+  max-width: 940px;
+  margin: 0 auto;
+}

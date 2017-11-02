@@ -1,0 +1,39 @@
+uuid: ab996867-2009-4211-992f-95b4afde4748
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.team_member.body
+    - field.field.node.team_member.field_image
+    - field.field.node.team_member.field_title
+    - image.style.team_member_teaser
+    - node.type.team_member
+  module:
+    - image
+    - user
+id: node.team_member.teaser
+targetEntityType: node
+bundle: team_member
+mode: teaser
+content:
+  field_image:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: team_member_teaser
+      image_link: ''
+    third_party_settings: {  }
+  field_title:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  body: true
+  links: true

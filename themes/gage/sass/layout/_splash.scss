@@ -1,0 +1,25 @@
+.region-splash
+{
+  background: url(../images/bg-splash.jpg) no-repeat center center;
+  background-size: cover;
+  position: relative;
+  padding-bottom: 60%;
+  padding-bottom: 100vh;
+
+  @media print
+  {
+    display: none;
+  }
+}
+
+.block--splash-logo img
+{
+  display: block;
+  width: 220px;
+  height: 154px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -77px;
+  margin-left: -110px;
+}
