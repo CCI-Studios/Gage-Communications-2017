@@ -15,13 +15,18 @@ settings:
     rows:
       -
         -
+          name: 'Block Formatting'
+          items:
+            - Format
+        -
           name: Formatting
           items:
             - Bold
             - Italic
-            - Strike
-            - Superscript
-            - Subscript
+            - '-'
+            - JustifyLeft
+            - JustifyCenter
+            - JustifyRight
             - '-'
             - RemoveFormat
         -
@@ -37,20 +42,16 @@ settings:
         -
           name: Media
           items:
-            - Blockquote
             - DrupalImage
             - Table
             - HorizontalRule
         -
-          name: 'Block Formatting'
-          items:
-            - Format
-        -
           name: Tools
           items:
-            - ShowBlocks
             - Source
   plugins:
+    language:
+      language_list: un
     stylescombo:
       styles: ''
 image_upload:
@@ -59,5 +60,5 @@ image_upload:
   directory: inline-images
   max_size: ''
   max_dimensions:
-    width: 0
-    height: 0
+    width: null
+    height: null

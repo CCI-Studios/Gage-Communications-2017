@@ -22,6 +22,32 @@
   }
 }
 
+.block--get-engaged
+{
+  clear: both;
+  background: #eeeeee;
+  padding: 80px 25px;
+  text-align: center;
+
+  h2
+  {
+    font-size: 3em;
+    line-height: 1;
+  }
+  .button
+  {
+    display: inline-block;
+    color: white;
+    background: black;
+    width: 200px;
+    text-align: center;
+    text-transform: uppercase;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+  }
+}
+
 .block--footer-logo
 {
   float: left;

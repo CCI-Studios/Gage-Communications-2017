@@ -15,7 +15,7 @@ _core:
 id: gage_content
 theme: gage
 region: content
-weight: 1
+weight: -2
 provider: null
 plugin: system_main_block
 settings:

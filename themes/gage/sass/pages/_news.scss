@@ -1,0 +1,137 @@
+.node--type-news-article.node--view-mode-teaser
+{
+  position: relative;
+  padding-top: 40px;
+  overflow: hidden;
+
+  &:after
+  {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  .field--name-field-image
+  {
+    width: 640px;
+    max-width: 75%;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    img
+    {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+  .node__content
+  {
+    position: relative;
+    z-index: 1;
+    background: rgba(255,255,255,0.95);
+    padding: 20px 30px 30px 30px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 600px;
+    float: right;
+  }
+  h2
+  {
+    font-size: 2.5em;
+    padding-bottom: 15px;
+    border-bottom: 2px solid black;
+    line-height: normal;
+
+    a
+    {
+      text-decoration: none;
+    }
+  }
+  .created
+  {
+    @include headingfont();
+    font-size: 1.25em;
+    margin: 1em 0 0.5em;
+  }
+  .read-more
+  {
+    @include headingfont();
+    margin-top: 0.5em;
+    text-decoration: none;
+
+    &:hover
+    {
+      text-decoration: underline;
+    }
+  }
+}
+
+.view-news
+{
+  .views-row
+  {
+    margin-bottom: 6.25em;
+  }
+}
+
+.page-node-type-news-article
+{
+  .layout-content
+  {
+    padding-top: 35%;
+    background: url(../images/bg-news.jpg) no-repeat top center;
+    background-size: 100% auto;
+  }
+  .region-content
+  {
+    padding-top: 0;
+  }
+}
+
+.block--page-title-news
+{
+  margin-bottom: 6.25em;
+}
+
+.node--type-news-article.node--view-mode-full
+{
+  .created
+  {
+    @include headingfont();
+    font-size: 1.25em;
+    margin-bottom: 0.5em;
+  }
+}
+
+.block--news-pager
+{
+  margin-top: 6.25em;
+
+  .entity-pager-list
+  {
+    list-style: none;
+
+    li
+    {
+      margin: 0;
+    }
+    a
+    {
+      display: block;
+      margin: 0.5em;
+      color: white;
+      text-decoration: none;
+      background: black;
+      line-height: 1;
+      padding: 12px 10px;
+      min-width: 180px;
+      text-transform: uppercase;
+      font-size: 1.1em;
+    }
+    .inactive
+    {
+      display: none;
+    }
+  }
+}

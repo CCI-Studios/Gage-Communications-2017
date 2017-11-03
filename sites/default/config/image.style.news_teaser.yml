@@ -1,0 +1,17 @@
+uuid: 76d6bc02-f4fb-4f65-a4df-dc290c58e209
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: news_teaser
+label: 'News teaser'
+effects:
+  445c7ea5-6ff4-45b0-8a69-2a6d216ba910:
+    uuid: 445c7ea5-6ff4-45b0-8a69-2a6d216ba910
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 640
+      height: 400
+      crop_type: focal_point

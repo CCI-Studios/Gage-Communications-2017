@@ -1,0 +1,35 @@
+uuid: 6a05d38a-1fab-4a0a-8ee2-103194a82d86
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:dc1d5212-4572-4d33-a33b-ddb50ae2edb9'
+  module:
+    - block_class
+    - block_content
+    - system
+  theme:
+    - gage
+third_party_settings:
+  block_class:
+    classes: block--get-engaged
+id: wewouldlovetoworkwithyou.
+theme: gage
+region: after_content
+weight: 0
+provider: null
+plugin: 'block_content:dc1d5212-4572-4d33-a33b-ddb50ae2edb9'
+settings:
+  id: 'block_content:dc1d5212-4572-4d33-a33b-ddb50ae2edb9'
+  label: 'We would love to work with you.'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }
