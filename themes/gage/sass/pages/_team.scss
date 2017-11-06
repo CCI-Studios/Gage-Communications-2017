@@ -1,4 +1,4 @@
-.view-team-members
+.view-team-members.view-display-id-block_1
 {
   .view-content
   {
@@ -9,6 +9,18 @@
     display: inline-block;
     position: relative;
     margin: 0 15px 30px 15px;
+  }
+  
+  
+}
+
+.node--team-member--teaser
+{
+  & > a
+  {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
   .field--name-field-image img
   {
@@ -44,9 +56,9 @@
     font-size: 0.75em;
     line-height: 1;
   }
-  .node:hover, .node:focus
+  &:hover, &:focus
   {
-    &:before
+    & > a:before
     {
       content: "";
       display: block;
@@ -61,6 +73,69 @@
     .node__content
     {
       display: block;
+    }
+  }
+}
+
+.node--team-member--full
+{
+  margin-top: 6.25em;
+
+  .node__content
+  {
+    text-align: left;
+    overflow: hidden;
+    padding-top: 15%;
+  }
+  .node__content > h2
+  {
+    font-size: 3em;
+    line-height: 1;
+    padding-bottom: 12px;
+    border-bottom: 2px solid black;
+    margin-bottom: 30px;
+  }
+  .field--name-field-title
+  {
+    @include headingfont();
+    font-size: 1.5em;
+    line-height: 1;
+    margin-bottom: 0.5em;
+  }
+  .linkedin
+  {
+    display: inline-block;
+    font-size: 0;
+    text-decoration: none;
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+    background: url(../images/social-in-black.svg) no-repeat center center;
+    vertical-align: top;
+  }
+}
+
+.view-team-members.view-display-id-page_1
+{
+  .views-row
+  {
+    clear: both;
+
+    &:nth-child(2n + 1)
+    {
+      .field--name-field-image
+      {
+        float: left;
+        margin-right: 60px;
+      }
+    }
+    &:nth-child(2n)
+    {
+      .field--name-field-image
+      {
+        float: right;
+        margin-left: 60px;
+      }
     }
   }
 }

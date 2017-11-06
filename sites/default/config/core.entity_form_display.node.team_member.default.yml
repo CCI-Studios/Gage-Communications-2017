@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.team_member.body
     - field.field.node.team_member.field_image
+    - field.field.node.team_member.field_linkedin_link
     - field.field.node.team_member.field_title
     - image.style.medium
     - node.type.team_member
@@ -41,6 +42,14 @@ content:
       preview_link: false
     third_party_settings: {  }
     type: image_focal_point
+    region: content
+  field_linkedin_link:
+    weight: 124
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_title:
     weight: 122

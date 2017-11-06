@@ -359,18 +359,23 @@ a {
     appearance: none;
     cursor: pointer; }
 
-.view-team-members .view-content {
+.view-team-members.view-display-id-block_1 .view-content {
   text-align: center; }
 
-.view-team-members .views-row {
+.view-team-members.view-display-id-block_1 .views-row {
   display: inline-block;
   position: relative;
   margin: 0 15px 30px 15px; }
 
-.view-team-members .field--name-field-image img {
+.node--team-member--teaser > a {
+  display: block;
+  width: 100%;
+  height: 100%; }
+
+.node--team-member--teaser .field--name-field-image img {
   display: block; }
 
-.view-team-members .node__content {
+.node--team-member--teaser .node__content {
   display: none;
   position: absolute;
   top: 50%;
@@ -385,7 +390,7 @@ a {
   -moz-transform: translateY(-50%);
   transform: translateY(-50%); }
 
-.view-team-members .field--name-title {
+.node--team-member--teaser .field--name-title {
   display: block;
   font-size: 0.9375em;
   line-height: 1;
@@ -393,12 +398,12 @@ a {
   font-family: 'Alice', serif;
   font-weight: 400; }
 
-.view-team-members .field--name-field-title {
+.node--team-member--teaser .field--name-field-title {
   text-transform: uppercase;
   font-size: 0.75em;
   line-height: 1; }
 
-.view-team-members .node:hover:before, .view-team-members .node:focus:before {
+.node--team-member--teaser:hover > a:before, .node--team-member--teaser:focus > a:before {
   content: "";
   display: block;
   position: absolute;
@@ -409,8 +414,45 @@ a {
   background-color: black;
   opacity: 0.5; }
 
-.view-team-members .node:hover .node__content, .view-team-members .node:focus .node__content {
+.node--team-member--teaser:hover .node__content, .node--team-member--teaser:focus .node__content {
   display: block; }
+
+.node--team-member--full {
+  margin-top: 6.25em; }
+  .node--team-member--full .node__content {
+    text-align: left;
+    overflow: hidden;
+    padding-top: 15%; }
+  .node--team-member--full .node__content > h2 {
+    font-size: 3em;
+    line-height: 1;
+    padding-bottom: 12px;
+    border-bottom: 2px solid black;
+    margin-bottom: 30px; }
+  .node--team-member--full .field--name-field-title {
+    font-family: 'Alice', serif;
+    font-weight: 400;
+    font-size: 1.5em;
+    line-height: 1;
+    margin-bottom: 0.5em; }
+  .node--team-member--full .linkedin {
+    display: inline-block;
+    font-size: 0;
+    text-decoration: none;
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+    background: url(../images/social-in-black.svg) no-repeat center center;
+    vertical-align: top; }
+
+.view-team-members.view-display-id-page_1 .views-row {
+  clear: both; }
+  .view-team-members.view-display-id-page_1 .views-row:nth-child(2n + 1) .field--name-field-image {
+    float: left;
+    margin-right: 60px; }
+  .view-team-members.view-display-id-page_1 .views-row:nth-child(2n) .field--name-field-image {
+    float: right;
+    margin-left: 60px; }
 
 .node--type-news-article.node--view-mode-teaser {
   position: relative;

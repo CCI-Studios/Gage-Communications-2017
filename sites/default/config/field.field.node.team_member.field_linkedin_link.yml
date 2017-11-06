@@ -1,0 +1,19 @@
+uuid: f5221742-7dc5-4e5d-9080-dae0d5a06921
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_linkedin_link
+    - node.type.team_member
+id: node.team_member.field_linkedin_link
+field_name: field_linkedin_link
+entity_type: node
+bundle: team_member
+label: 'LinkedIn Link'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

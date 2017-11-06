@@ -1,9 +1,9 @@
-uuid: d234567d-d8cd-4390-a0ad-0222e7dac161
+uuid: 773f2b09-e31d-411e-9c66-d8868a54e9c9
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:basic:a15a8146-0d16-46ea-9a0d-9492f8fdc978'
+    - 'block_content:basic:874b1cc8-5191-42f2-8b2f-b01827a386f5'
   module:
     - block_class
     - block_content
@@ -12,16 +12,16 @@ dependencies:
     - gage
 third_party_settings:
   block_class:
-    classes: 'block--page-title block--page-title-news'
-id: thelatest
+    classes: 'block--page-title block--team-page-title'
+id: gettoknowus.
 theme: gage
 region: content
-weight: -7
+weight: -6
 provider: null
-plugin: 'block_content:a15a8146-0d16-46ea-9a0d-9492f8fdc978'
+plugin: 'block_content:874b1cc8-5191-42f2-8b2f-b01827a386f5'
 settings:
-  id: 'block_content:a15a8146-0d16-46ea-9a0d-9492f8fdc978'
-  label: 'The Latest'
+  id: 'block_content:874b1cc8-5191-42f2-8b2f-b01827a386f5'
+  label: 'Get to know us.'
   provider: block_content
   label_display: '0'
   status: true
@@ -30,6 +30,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: /news
+    pages: /team
     negate: false
     context_mapping: {  }

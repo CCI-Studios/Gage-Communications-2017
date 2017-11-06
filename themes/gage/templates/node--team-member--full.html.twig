@@ -82,15 +82,20 @@
   ]
 %}
 {{ attach_library('classy/node') }}
-<div{{ attributes.addClass(classes).removeAttribute("role") }}>
+<div{{ attributes.addClass(classes).removeAttribute("role") }} id="{{ node.getTitle|clean_class }}">
 
-  <a href="/team#{{ node.getTitle|clean_class }}">
-    {{ content.field_image }}
+  {{ content.field_image }}
 
-    <div{{ content_attributes.addClass('node__content') }}>
-      {{ label }}
-      {{ content|without("field_image") }}
-    </div>
-  </a>
+  <div{{ content_attributes.addClass('node__content') }}>
+    <h2>{{ label }}</h2>
+    {{ content.field_title }}
+    {{ content.body }}
+    {% if node.field_linkedin_link.0 %}
+      {% set name = node.getTitle %}
+      <a class="linkedin" href="{{ node.field_linkedin_link.0.value }}" target="_blank" title="{% trans %}{{ name }}'s LinkedIn page{% endtrans %}">
+        {% trans %}{{ name }}'s LinkedIn page{% endtrans %}
+      </a>
+    {% endif %}
+  </div>
 
 </div>

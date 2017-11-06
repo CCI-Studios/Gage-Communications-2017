@@ -1,0 +1,17 @@
+uuid: eecc9749-6f25-4afb-887b-f09055dac15c
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: team_member
+label: 'Team member'
+effects:
+  50fb5268-0148-496b-8ed7-42a60be3b5a0:
+    uuid: 50fb5268-0148-496b-8ed7-42a60be3b5a0
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 330
+      height: 330
+      crop_type: focal_point

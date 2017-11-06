@@ -16,7 +16,7 @@ third_party_settings:
 id: views_block__news_pager_block_1
 theme: gage
 region: content
-weight: 0
+weight: -2
 provider: null
 plugin: 'views_block:news_pager-block_1'
 settings:
