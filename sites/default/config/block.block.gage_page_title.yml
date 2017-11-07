@@ -15,7 +15,7 @@ _core:
 id: gage_page_title
 theme: gage
 region: content
-weight: -9
+weight: -10
 provider: null
 plugin: page_title_block
 settings:
@@ -26,6 +26,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: "/news\r\n/team\r\n/about"
+    pages: "/news\r\n/team\r\n/about\r\n/services"
     negate: true
     context_mapping: {  }

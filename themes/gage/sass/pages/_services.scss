@@ -1,0 +1,88 @@
+.path-part-services
+{
+  .layout-content
+  {
+    background: black url(../images/bg-whiteboard.jpg) no-repeat center center;
+    background-size: cover;
+    color: white;
+
+    h1
+    {
+      border-color: white;
+    }
+  }
+}
+
+.block--services-list
+{
+  clear: both;
+  padding: 80px 25px;
+
+  & > div
+  {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  h2
+  {
+    font-size: 3em;
+    text-align: left;
+    padding-bottom: 20px;
+    border-bottom: 2px solid black;
+    margin-bottom: 20px;
+    line-height: normal;
+  }
+  .field--name-body
+  {
+    ul
+    {
+      margin-left: 0;
+      list-style: none;
+
+      li
+      {
+        padding: 0 10% 0 250px;
+        margin: 60px 0 0 0;
+        position: relative;
+
+        &:before
+        {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 250px;
+          background-repeat: no-repeat;
+          background-position: top center;
+        }
+      }
+      .pr:before
+      {
+        background-image: url(../images/icon-pr-black.svg);
+      }
+      .partnerships:before
+      {
+        background-image: url(../images/icon-partnerships-black.svg);
+      }
+      .seo:before
+      {
+        background-image: url(../images/icon-seo-black.svg);
+      }
+      .creative:before
+      {
+        background-image: url(../images/icon-creative-black.svg);
+      }
+      .media:before
+      {
+        background-image: url(../images/icon-media-black.svg);
+      }
+      h3
+      {
+        font-size: 1.4em;
+        margin-bottom: 0.4em;
+      }
+    }
+  }
+}

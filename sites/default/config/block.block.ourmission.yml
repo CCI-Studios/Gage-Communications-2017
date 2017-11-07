@@ -16,7 +16,7 @@ third_party_settings:
 id: ourmission
 theme: gage
 region: after_content
-weight: -9
+weight: -10
 provider: null
 plugin: 'block_content:7dcc5e6c-e528-4ffa-af82-9064785cc66a'
 settings:

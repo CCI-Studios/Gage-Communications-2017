@@ -11,7 +11,7 @@ _core:
 id: gage_messages
 theme: gage
 region: content
-weight: -10
+weight: -11
 provider: null
 plugin: system_messages_block
 settings:

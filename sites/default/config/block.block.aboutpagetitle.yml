@@ -16,7 +16,7 @@ third_party_settings:
 id: aboutpagetitle
 theme: gage
 region: content
-weight: -6
+weight: -7
 provider: null
 plugin: 'block_content:d62b5852-8a7d-48fb-a3f1-d7107e6bc21e'
 settings:

@@ -1,9 +1,9 @@
-uuid: d234567d-d8cd-4390-a0ad-0222e7dac161
+uuid: 9d382208-750f-406e-9580-d5453353a44a
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:basic:a15a8146-0d16-46ea-9a0d-9492f8fdc978'
+    - 'block_content:basic:faac1d22-0b62-4545-a67d-139176483a7d'
   module:
     - block_class
     - block_content
@@ -12,16 +12,16 @@ dependencies:
     - gage
 third_party_settings:
   block_class:
-    classes: 'block--page-title block--page-title-news'
-id: thelatest
+    classes: 'block--page-title block--services-page-title'
+id: servicespagetitle
 theme: gage
 region: content
-weight: -9
+weight: -6
 provider: null
-plugin: 'block_content:a15a8146-0d16-46ea-9a0d-9492f8fdc978'
+plugin: 'block_content:faac1d22-0b62-4545-a67d-139176483a7d'
 settings:
-  id: 'block_content:a15a8146-0d16-46ea-9a0d-9492f8fdc978'
-  label: 'The Latest'
+  id: 'block_content:faac1d22-0b62-4545-a67d-139176483a7d'
+  label: 'Services page title'
   provider: block_content
   label_display: '0'
   status: true
@@ -30,6 +30,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: /news
+    pages: /services
     negate: false
     context_mapping: {  }
