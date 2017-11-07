@@ -1,9 +1,9 @@
-uuid: b868fe83-4c89-4f44-a579-bee5ce2a7962
+uuid: 873d7345-fee5-47c5-98f9-1b0fef5fa304
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:basic:5a0e6967-8701-4b51-86fd-8f07766c7e08'
+    - 'block_content:basic:d62b5852-8a7d-48fb-a3f1-d7107e6bc21e'
   module:
     - block_class
     - block_content
@@ -12,16 +12,16 @@ dependencies:
     - gage
 third_party_settings:
   block_class:
-    classes: block--newsletter
-id: newsletter
+    classes: 'block--page-title block--about-page-title'
+id: aboutpagetitle
 theme: gage
-region: after_content
-weight: -7
+region: content
+weight: -6
 provider: null
-plugin: 'block_content:5a0e6967-8701-4b51-86fd-8f07766c7e08'
+plugin: 'block_content:d62b5852-8a7d-48fb-a3f1-d7107e6bc21e'
 settings:
-  id: 'block_content:5a0e6967-8701-4b51-86fd-8f07766c7e08'
-  label: Newsletter
+  id: 'block_content:d62b5852-8a7d-48fb-a3f1-d7107e6bc21e'
+  label: 'About page title'
   provider: block_content
   label_display: '0'
   status: true
@@ -30,6 +30,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: '<front>'
+    pages: /about
     negate: false
     context_mapping: {  }

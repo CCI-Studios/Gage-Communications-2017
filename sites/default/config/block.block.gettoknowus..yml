@@ -16,7 +16,7 @@ third_party_settings:
 id: gettoknowus.
 theme: gage
 region: content
-weight: -6
+weight: -7
 provider: null
 plugin: 'block_content:874b1cc8-5191-42f2-8b2f-b01827a386f5'
 settings:

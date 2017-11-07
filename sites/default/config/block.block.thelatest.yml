@@ -16,7 +16,7 @@ third_party_settings:
 id: thelatest
 theme: gage
 region: content
-weight: -7
+weight: -8
 provider: null
 plugin: 'block_content:a15a8146-0d16-46ea-9a0d-9492f8fdc978'
 settings:

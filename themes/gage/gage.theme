@@ -1,0 +1,12 @@
+<?php
+
+function gage_preprocess_html(&$variables) {
+  $root_path = \Drupal::service('path.current')->getPath();
+  $alias_path = \Drupal::service('path.alias_manager')->getAliasByPath($root_path);
+  $path_args = explode('/', $alias_path);
+  foreach ($path_args as $path_part) {
+    if ($path_part) {
+      $variables['attributes']['class'][] = 'path-part-' . $path_part;
+    }
+  }
+}

@@ -1,9 +1,9 @@
-uuid: 6a05d38a-1fab-4a0a-8ee2-103194a82d86
+uuid: 897fcf73-b441-40f2-a855-ebe88d2b2bc3
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:basic:dc1d5212-4572-4d33-a33b-ddb50ae2edb9'
+    - 'block_content:basic:ed4fbba2-6d0f-433e-8fae-87d636906bf4'
   module:
     - block_class
     - block_content
@@ -12,16 +12,16 @@ dependencies:
     - gage
 third_party_settings:
   block_class:
-    classes: block--get-engaged
-id: wewouldlovetoworkwithyou.
+    classes: block--vision
+id: vision
 theme: gage
 region: after_content
-weight: -6
+weight: -8
 provider: null
-plugin: 'block_content:dc1d5212-4572-4d33-a33b-ddb50ae2edb9'
+plugin: 'block_content:ed4fbba2-6d0f-433e-8fae-87d636906bf4'
 settings:
-  id: 'block_content:dc1d5212-4572-4d33-a33b-ddb50ae2edb9'
-  label: 'We would love to work with you.'
+  id: 'block_content:ed4fbba2-6d0f-433e-8fae-87d636906bf4'
+  label: 'Pellentesque vitae velit at justo laoreet commodo eu ut diam.'
   provider: block_content
   label_display: visible
   status: true
@@ -30,6 +30,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: '<front>'
-    negate: true
+    pages: /about
+    negate: false
     context_mapping: {  }
