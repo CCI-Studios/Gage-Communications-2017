@@ -16,7 +16,7 @@ third_party_settings:
 id: ourclients.
 theme: gage
 region: content
-weight: -6
+weight: -7
 provider: null
 plugin: 'block_content:79b207f9-823b-4b19-ae7c-a95a6897beab'
 settings:

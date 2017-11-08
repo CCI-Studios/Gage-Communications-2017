@@ -16,7 +16,7 @@ third_party_settings:
 id: servicespagetitle
 theme: gage
 region: content
-weight: -7
+weight: -8
 provider: null
 plugin: 'block_content:faac1d22-0b62-4545-a67d-139176483a7d'
 settings:

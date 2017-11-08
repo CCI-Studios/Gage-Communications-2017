@@ -1,0 +1,60 @@
+.path-part-contact
+{
+  .layout-content
+  {
+    position: relative;
+    background: url(../images/bg-contact.jpg) no-repeat center center;
+    background-size: cover;
+    padding: 6.25em 25px;
+
+    &:after
+    {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    &
+    {
+      @media (min-width: 860px)
+      {
+        padding-top: 35%;
+      }
+    }
+  }
+  .region-content
+  {
+    background: white;
+    padding: 25px;
+
+    &
+    {
+      @media (min-width: 860px)
+      {
+        float: right;
+        max-width: 500px;
+      }
+    }
+
+    h1
+    {
+      margin: 0;
+      padding-bottom: 10px;
+    }
+  }
+}
+
+.webform--contact
+{
+  padding: 10px 20px 0 20px;
+  
+  label
+  {
+    position: absolute;
+    left: -999999px;
+  }
+  .form-actions
+  {
+    margin-bottom: 0;
+  }
+}

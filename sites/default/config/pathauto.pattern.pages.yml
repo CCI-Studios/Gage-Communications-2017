@@ -9,14 +9,15 @@ label: Pages
 type: 'canonical_entities:node'
 pattern: '[node:title]'
 selection_criteria:
-  77975efb-a7e7-4b3a-93b6-0204cd7a4ecc:
+  5e805bf4-2678-4584-9d5c-214f42681b38:
     id: node_type
     bundles:
       page: page
+      webform: webform
     negate: false
     context_mapping:
       node: node
-    uuid: 77975efb-a7e7-4b3a-93b6-0204cd7a4ecc
+    uuid: 5e805bf4-2678-4584-9d5c-214f42681b38
 selection_logic: and
 weight: -5
 relationships: {  }

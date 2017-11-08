@@ -11,7 +11,7 @@ _core:
 id: gage_help
 theme: gage
 region: content
-weight: -13
+weight: -14
 provider: null
 plugin: help_block
 settings:
