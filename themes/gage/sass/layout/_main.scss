@@ -21,6 +21,41 @@
   {
     margin-left: 25px;
   }
+  blockquote
+  {
+    position: relative;
+    padding: 5px 40px;
+
+    &:before,
+    &:after
+    {
+      @include headingfont();
+      font-size: 3em;
+      display: block;
+      position: absolute;
+      line-height: 1;
+    }
+    &:before
+    {
+      content: "\201C";
+      left: 0;
+      top: 0;
+    }
+    &:after
+    {
+      content: "\201D";
+      right: 0;
+      bottom: 0;
+      line-height: 0.5;
+    }
+  }
+  cite
+  {
+    @include headingfont();
+    display: block;
+    font-style: normal;
+    text-align: right;
+  }
 }
 
 .region-content

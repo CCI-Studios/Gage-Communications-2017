@@ -16,7 +16,7 @@ third_party_settings:
 id: vision
 theme: gage
 region: after_content
-weight: -9
+weight: -10
 provider: null
 plugin: 'block_content:ed4fbba2-6d0f-433e-8fae-87d636906bf4'
 settings:

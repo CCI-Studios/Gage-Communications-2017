@@ -1,9 +1,9 @@
-uuid: 60daa6e5-3865-4260-9df6-a5e79eb56b17
+uuid: 393081e7-6fee-4114-bec2-16d584912a73
 langcode: en
 status: true
 dependencies:
   config:
-    - views.view.team_members
+    - views.view.clients
   module:
     - block_class
     - system
@@ -12,23 +12,23 @@ dependencies:
     - gage
 third_party_settings:
   block_class:
-    classes: block--home-team
-id: views_block__team_members_block_1
+    classes: block--clients
+id: views_block__clients_block_1
 theme: gage
 region: after_content
-weight: -12
+weight: -8
 provider: null
-plugin: 'views_block:team_members-block_1'
+plugin: 'views_block:clients-block_1'
 settings:
-  id: 'views_block:team_members-block_1'
-  label: 'our team'
+  id: 'views_block:clients-block_1'
+  label: ''
   provider: views
-  label_display: visible
-  views_label: 'our team'
+  label_display: '0'
+  views_label: ''
   items_per_page: none
 visibility:
   request_path:
     id: request_path
-    pages: '<front>'
+    pages: /clients
     negate: false
     context_mapping: {  }

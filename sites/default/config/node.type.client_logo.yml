@@ -1,4 +1,4 @@
-uuid: 092ce674-688b-430b-82f2-3d919772fbb1
+uuid: 5bd1e537-42a4-4559-9457-9e1bbd0091ee
 langcode: en
 status: true
 dependencies:
@@ -8,8 +8,8 @@ third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
-name: 'Team member'
-type: team_member
+name: 'Client logo'
+type: client_logo
 description: ''
 help: ''
 new_revision: true

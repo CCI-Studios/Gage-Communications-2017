@@ -248,6 +248,33 @@ a {
 .layout-main li {
   margin-left: 25px; }
 
+.layout-main blockquote {
+  position: relative;
+  padding: 5px 40px; }
+  .layout-main blockquote:before, .layout-main blockquote:after {
+    font-family: 'Alice', serif;
+    font-weight: 400;
+    font-size: 3em;
+    display: block;
+    position: absolute;
+    line-height: 1; }
+  .layout-main blockquote:before {
+    content: "\201C";
+    left: 0;
+    top: 0; }
+  .layout-main blockquote:after {
+    content: "\201D";
+    right: 0;
+    bottom: 0;
+    line-height: 0.5; }
+
+.layout-main cite {
+  font-family: 'Alice', serif;
+  font-weight: 400;
+  display: block;
+  font-style: normal;
+  text-align: right; }
+
 .region-content {
   clear: both;
   padding: 100px 25px;
@@ -630,7 +657,7 @@ a {
         bottom: 0;
         width: 250px;
         background-repeat: no-repeat;
-        background-position: center center; }
+        background-position: top center; }
     .block--services-list .field--name-body ul .pr:before {
       background-image: url(../images/icon-pr-black.svg); }
     .block--services-list .field--name-body ul .partnerships:before {
@@ -644,3 +671,33 @@ a {
     .block--services-list .field--name-body ul h3 {
       font-size: 1.4em;
       margin-bottom: 0.4em; }
+
+.path-part-clients .layout-content {
+  color: white;
+  background: url(../images/bg-blackboard.jpg) no-repeat center center;
+  background-size: cover; }
+  .path-part-clients .layout-content h1 {
+    border-color: white; }
+
+.view-clients {
+  clear: both;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 6.25em 25px; }
+  .view-clients:after {
+    content: "";
+    display: block;
+    clear: both; }
+  .view-clients .views-row {
+    float: left;
+    width: 22.75%;
+    margin-left: 3%; }
+    .view-clients .views-row:nth-child(4n+1) {
+      clear: left;
+      margin-left: 0; }
+    .view-clients .views-row a {
+      display: block; }
+    .view-clients .views-row img {
+      display: block;
+      max-width: 100%;
+      height: auto; }

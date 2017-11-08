@@ -1,0 +1,18 @@
+uuid: 56797ce9-543e-4592-89d3-ca7c270672cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.client_logo
+id: node.client_logo.title
+field_name: title
+entity_type: node
+bundle: client_logo
+label: 'Client name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,15 @@
+uuid: 0f271b8f-ba3a-47a3-a03d-dd3a3acd0477
+langcode: en
+status: true
+dependencies: {  }
+name: client_logo
+label: 'Client logo'
+effects:
+  08ec9d8a-8ccd-46eb-b0a6-466eb1a085b4:
+    uuid: 08ec9d8a-8ccd-46eb-b0a6-466eb1a085b4
+    id: image_scale
+    weight: 1
+    data:
+      width: 220
+      height: 160
+      upscale: false
