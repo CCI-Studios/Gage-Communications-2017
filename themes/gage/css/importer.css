@@ -152,27 +152,25 @@ button[type=submit] {
       height: 75px;
       width: auto; } }
 
-.block--social-header .field--name-body ul {
-  list-style: none; }
-
-.block--social-header .field--name-body li {
-  display: inline-block;
-  vertical-align: top; }
-
-.block--social-header .field--name-body a {
-  font-size: 0;
-  display: block;
-  width: 15px;
-  height: 15px;
-  padding: 5px;
-  background-repeat: no-repeat;
-  background-position: center center; }
-
-.block--social-header .field--name-body .ig {
-  background-image: url(../images/social-ig-black.svg); }
-
-.block--social-header .field--name-body .in {
-  background-image: url(../images/social-in-black.svg); }
+.block--social-header {
+  margin-right: -5px; }
+  .block--social-header .field--name-body ul {
+    list-style: none; }
+  .block--social-header .field--name-body li {
+    display: inline-block;
+    vertical-align: top; }
+  .block--social-header .field--name-body a {
+    font-size: 0;
+    display: block;
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .block--social-header .field--name-body .ig {
+    background-image: url(../images/social-ig-black.svg); }
+  .block--social-header .field--name-body .in {
+    background-image: url(../images/social-in-black.svg); }
 
 .block--search {
   float: right;
