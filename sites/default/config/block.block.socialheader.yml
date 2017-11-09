@@ -15,7 +15,7 @@ third_party_settings:
 id: socialheader
 theme: gage
 region: header_right
-weight: 0
+weight: -14
 provider: null
 plugin: 'block_content:c8b50d70-0129-4432-81fa-e17eac01e7ef'
 settings:

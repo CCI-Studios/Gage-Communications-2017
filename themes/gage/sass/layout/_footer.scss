@@ -33,6 +33,14 @@
   {
     font-size: 3em;
     line-height: 1;
+
+    &
+    {
+      @media (max-width: 760px)
+      {
+        font-size: 2em;
+      }
+    }
   }
   .button
   {
@@ -52,6 +60,16 @@
 {
   float: left;
   margin-right: 45px;
+
+  &
+  {
+    @media (max-width: 1140px)
+    {
+      float: none;
+      margin: 0 0 60px 0;
+      text-align: center;
+    }
+  }
 }
 
 .block--footer-find-us
@@ -61,17 +79,40 @@
   padding: 20px 45px 20px 250px;
   background: url(../images/bg-findus.png) no-repeat top left;
   margin-right: 45px;
+
+  &
+  {
+    @media (max-width: 1140px)
+    {
+      margin-right: 25px;
+      padding-right: 0;
+    }
+    @media (max-width: 480px)
+    {
+      float: none;
+      margin-right: -25px;
+      padding-right: 25px;
+      padding-left: 150px;
+      background: url(../images/bg-findus2.png) no-repeat top left;
+    }
+    @media (max-width: 370px)
+    {
+      padding-left: 110px;
+    }
+  }
   
   h2
   {
     font-size: 2.25em;
     line-height: 1;
     margin-bottom: 25px;
+    background: black;
   }
   p
   {
     font-size: 1.0625em;
     line-height: 2;
+    background: black;
   }
 }
 
@@ -81,6 +122,19 @@
   position: relative;
   width: 300px;
   padding: 20px 0;
+
+  &
+  {
+    @media (max-width: 1140px)
+    {
+      width: 275px;
+    }
+    @media (max-width: 480px)
+    {
+      float: none;
+      width: auto;
+    }
+  }
 
   &:before
   {
@@ -141,6 +195,14 @@
 {
   float: left;
 
+  &
+  {
+    @media (max-width: 760px)
+    {
+      display: none;
+    }
+  }
+
   .menu
   {
     list-style: none;
@@ -163,4 +225,13 @@
   @include headingfont();
   float: right;
   font-size: 0.9375em;
+
+  &
+  {
+    @media (max-width: 480px)
+    {
+      float: none;
+      text-align: center;
+    }
+  }
 }

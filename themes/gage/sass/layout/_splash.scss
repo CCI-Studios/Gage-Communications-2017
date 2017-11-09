@@ -6,7 +6,7 @@
   padding-bottom: 60%;
   padding-bottom: 100vh;
 
-  @media print
+  @media print, (max-width: 860px)
   {
     display: none;
   }
