@@ -1,0 +1,21 @@
+uuid: 389ad7a0-2591-4970-b9b0-b5cfca8ebae2
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.content
+id: content
+label: Search
+path: /search
+clean_url: true
+show_all_when_no_keys: false
+index: content
+limit: 10
+searched_fields:
+  rendered_item: rendered_item
+  title: title
+  field_title: field_title
+  body: body
+style: search_results
+view_mode_configuration: {  }
+show_search_form: true

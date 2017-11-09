@@ -17,7 +17,7 @@ _core:
 id: gage_main_menu
 theme: gage
 region: navigation
-weight: -5
+weight: -14
 provider: null
 plugin: 'system_menu_block:main'
 settings:

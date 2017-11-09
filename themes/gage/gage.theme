@@ -10,3 +10,10 @@ function gage_preprocess_html(&$variables) {
     }
   }
 }
+
+function gage_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == "search_api_page_block_form") {
+    $form['keys']['#attributes']['placeholder'] = t('search');
+    $form['actions']['submit']['#attributes']['title'] = t('Submit Search');
+  }
+}

@@ -1,0 +1,27 @@
+uuid: 373603a6-1866-4c90-90ec-9e36d68074d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api_page.search_api_page.content
+  module:
+    - block_class
+    - search_api_page
+  theme:
+    - gage
+third_party_settings:
+  block_class:
+    classes: block--search
+id: searchapipagesearchblockform
+theme: gage
+region: navigation
+weight: -15
+provider: null
+plugin: search_api_page_form_block
+settings:
+  id: search_api_page_form_block
+  label: 'Search Api Page search block form'
+  provider: search_api_page
+  label_display: '0'
+  search_api_page: content
+visibility: {  }
