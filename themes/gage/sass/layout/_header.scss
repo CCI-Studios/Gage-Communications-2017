@@ -1,18 +1,13 @@
 .layout-top
 {
-  height: 203px;
-  padding: 45px 25px;
+  height: 160px;
+  padding: 30px 25px;
   background: white;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   box-sizing: border-box;
 
   &
   {
-    @media (max-width: 940px)
-    {
-      padding: 30px 25px;
-      height: 160px;
-    }
     @media (max-width: 760px)
     {
       height: 135px;
@@ -51,14 +46,10 @@
   }
   .layout-main
   {
-    padding-top: 203px;
+    padding-top: 160px;
 
     &
     {
-      @media (max-width: 940px)
-      {
-        padding-top: 160px;
-      }
       @media (max-width: 760px)
       {
         padding-top: 0;
@@ -82,16 +73,12 @@
   img
   {
     display: block;
-    height: auto;
+    height: 100px;
+    width: auto;
     max-width: 100%;
 
     &
     {
-      @media (max-width: 940px)
-      {
-        height: 100px;
-        width: auto;
-      }
       @media (max-width: 760px)
       {
         height: 75px;

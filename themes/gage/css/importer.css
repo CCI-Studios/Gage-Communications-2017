@@ -94,15 +94,11 @@ button[type=submit] {
   margin-left: -110px; }
 
 .layout-top {
-  height: 203px;
-  padding: 45px 25px;
+  height: 160px;
+  padding: 30px 25px;
   background: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   box-sizing: border-box; }
-  @media (max-width: 940px) {
-    .layout-top {
-      padding: 30px 25px;
-      height: 160px; } }
   @media (max-width: 760px) {
     .layout-top {
       height: 135px; } }
@@ -125,10 +121,7 @@ button[type=submit] {
       position: relative; } }
 
 .menu-fixed .layout-main {
-  padding-top: 203px; }
-  @media (max-width: 940px) {
-    .menu-fixed .layout-main {
-      padding-top: 160px; } }
+  padding-top: 160px; }
   @media (max-width: 760px) {
     .menu-fixed .layout-main {
       padding-top: 0; } }
@@ -141,12 +134,9 @@ button[type=submit] {
 
 .block--logo img {
   display: block;
-  height: auto;
+  height: 100px;
+  width: auto;
   max-width: 100%; }
-  @media (max-width: 940px) {
-    .block--logo img {
-      height: 100px;
-      width: auto; } }
   @media (max-width: 760px) {
     .block--logo img {
       height: 75px;
