@@ -354,7 +354,8 @@
         }
       }
 
-      &:hover
+      &:hover,
+      &.is-active
       {
         border-color: black;
       }

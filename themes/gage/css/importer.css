@@ -312,7 +312,7 @@ button[type=submit] {
           padding: 20px 0;
           border: 0;
           text-align: left; } }
-      .block--main-menu .menu a:hover {
+      .block--main-menu .menu a:hover, .block--main-menu .menu a.is-active {
         border-color: black; }
 
 .block--menu-button {
