@@ -1021,19 +1021,19 @@ button[type=submit] {
     @media (max-width: 760px) {
       .block--services-list h2 {
         font-size: 2em; } }
-  .block--services-list .field--name-body ul {
+  .block--services-list .services {
     margin-left: 0;
     list-style: none; }
-    .block--services-list .field--name-body ul li {
+    .block--services-list .services li {
       padding: 0 10% 0 250px;
       margin: 60px 0 0 0;
       position: relative; }
       @media (max-width: 640px) {
-        .block--services-list .field--name-body ul li {
+        .block--services-list .services li {
           padding: 120px 0 0 0;
           max-width: 400px;
           margin: 60px auto 0 auto; } }
-      .block--services-list .field--name-body ul li:before {
+      .block--services-list .services li:before {
         content: "";
         display: block;
         position: absolute;
@@ -1044,26 +1044,26 @@ button[type=submit] {
         background-repeat: no-repeat;
         background-position: top center; }
         @media (max-width: 640px) {
-          .block--services-list .field--name-body ul li:before {
+          .block--services-list .services li:before {
             bottom: auto;
             height: 120px;
             width: 100%;
             background-position: center center; } }
-    .block--services-list .field--name-body ul .pr:before {
+    .block--services-list .services .pr:before {
       background-image: url(../images/icon-pr-black.svg); }
-    .block--services-list .field--name-body ul .partnerships:before {
+    .block--services-list .services .partnerships:before {
       background-image: url(../images/icon-partnerships-black.svg); }
-    .block--services-list .field--name-body ul .seo:before {
+    .block--services-list .services .seo:before {
       background-image: url(../images/icon-seo-black.svg); }
-    .block--services-list .field--name-body ul .creative:before {
+    .block--services-list .services .creative:before {
       background-image: url(../images/icon-creative-black.svg); }
-    .block--services-list .field--name-body ul .media:before {
+    .block--services-list .services .media:before {
       background-image: url(../images/icon-media-black.svg); }
-    .block--services-list .field--name-body ul h3 {
+    .block--services-list .services h3 {
       font-size: 1.4em;
       margin-bottom: 0.4em; }
       @media (max-width: 640px) {
-        .block--services-list .field--name-body ul h3 {
+        .block--services-list .services h3 {
           text-align: center; } }
 
 .path-part-clients .layout-content {
