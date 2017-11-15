@@ -74,7 +74,7 @@ button[type=submit] {
   appearance: none; }
 
 .region-splash {
-  background: url(../images/bg-splash.jpg) no-repeat center center;
+  background: url(../images/bg-splash.jpg?v2) no-repeat center center;
   background-size: cover;
   position: relative;
   padding-bottom: 60%;
