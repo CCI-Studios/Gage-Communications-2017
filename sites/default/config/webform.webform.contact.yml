@@ -125,9 +125,9 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: cmorris@ccistudios.com
+      to_mail: info@gagecommunications.ca
       to_options: {  }
-      cc_mail: tgascoigne@ccistudios.com
+      cc_mail: ''
       cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }

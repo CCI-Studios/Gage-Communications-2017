@@ -21,9 +21,9 @@ provider: null
 plugin: 'block_content:e33588b7-cd78-4951-a342-7cec09a4ccb3'
 settings:
   id: 'block_content:e33588b7-cd78-4951-a342-7cec09a4ccb3'
-  label: 'Pellentesque vitae velit at justo laoreet commodo eu ut diam.'
+  label: 'Services List'
   provider: block_content
-  label_display: visible
+  label_display: '0'
   status: true
   info: ''
   view_mode: full
