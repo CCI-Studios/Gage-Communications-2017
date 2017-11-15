@@ -1,6 +1,6 @@
 .layout-top
 {
-  height: 160px;
+  height: 145px;
   padding: 30px 25px;
   background: white;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -46,7 +46,7 @@
   }
   .layout-main
   {
-    padding-top: 160px;
+    padding-top: 145px;
 
     &
     {
@@ -73,7 +73,7 @@
   img
   {
     display: block;
-    height: 100px;
+    height: 85px;
     width: auto;
     max-width: 100%;
 
@@ -289,7 +289,7 @@
   .menu
   {
     list-style: none;
-    line-height: 113px;
+    line-height: 85px;
 
     &
     {
@@ -355,7 +355,7 @@
   display: none;
   float: right;
   clear: right;
-  margin-top: 10px;
+  margin-top: 20px;
 
   .menu-button
   {

@@ -94,7 +94,7 @@ button[type=submit] {
   margin-left: -110px; }
 
 .layout-top {
-  height: 160px;
+  height: 145px;
   padding: 30px 25px;
   background: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -121,7 +121,7 @@ button[type=submit] {
       position: relative; } }
 
 .menu-fixed .layout-main {
-  padding-top: 160px; }
+  padding-top: 145px; }
   @media (max-width: 760px) {
     .menu-fixed .layout-main {
       padding-top: 0; } }
@@ -134,7 +134,7 @@ button[type=submit] {
 
 .block--logo img {
   display: block;
-  height: 100px;
+  height: 85px;
   width: auto;
   max-width: 100%; }
   @media (max-width: 760px) {
@@ -271,7 +271,7 @@ button[type=submit] {
   text-align: center; }
   .block--main-menu .menu {
     list-style: none;
-    line-height: 113px; }
+    line-height: 85px; }
     @media (max-width: 760px) {
       .block--main-menu .menu {
         line-height: 1;
@@ -309,7 +309,7 @@ button[type=submit] {
   display: none;
   float: right;
   clear: right;
-  margin-top: 10px; }
+  margin-top: 20px; }
   .block--menu-button .menu-button {
     display: block;
     font-size: 0;
