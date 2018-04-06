@@ -552,7 +552,7 @@ button[type=submit] {
 .path-part-about .layout-content,
 .path-part-research .layout-content {
   background: url(../images/bg-home-g.svg) no-repeat 5% top;
-  background-size: auto 100%; }
+  background-size: 66% auto; }
 
 .path-frontpage .layout-content {
   background: url(../images/bg-home-g.svg) no-repeat 5% top;
