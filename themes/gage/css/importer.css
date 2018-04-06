@@ -549,6 +549,11 @@ button[type=submit] {
     .region-content {
       padding: 40px 25px; } }
 
+.path-part-about .layout-content,
+.path-part-research .layout-content {
+  background: url(../images/bg-home-g.svg) no-repeat 5% top;
+  background-size: auto 100%; }
+
 .path-frontpage .layout-content {
   background: url(../images/bg-home-g.svg) no-repeat 5% top;
   background-size: auto 100%; }
@@ -922,10 +927,6 @@ button[type=submit] {
       font-size: 1.1em; }
     .block--news-pager .entity-pager-list .inactive {
       display: none; }
-
-.path-part-about .layout-content {
-  background: url(../images/bg-home-g.svg) no-repeat 5% top;
-  background-size: auto 100%; }
 
 .block--our-mission {
   clear: both;
