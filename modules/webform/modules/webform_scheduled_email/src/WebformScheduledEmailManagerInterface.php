@@ -112,6 +112,14 @@ interface WebformScheduledEmailManagerInterface {
   const EMAIL_UNSCHEDULED = 'unscheduled';
 
   /**
+   * Denote email being ignored.
+   *
+   * @var string
+   */
+  const EMAIL_IGNORED = 'ignored';
+
+
+  /**
    * Denote email being sent.
    *
    * @var string
@@ -232,7 +240,7 @@ interface WebformScheduledEmailManagerInterface {
    * @param int $send_limit
    *   The maximum number of emails to be sent.
    *   If set to 0 no emails will be sent.
-   *   Defaults to webform.settting->batch.default_batch_email_size
+   *   Defaults to webform.settting->batch.default_batch_email_size.
    *
    * @return array
    *   An associative array containing cron task stats.
