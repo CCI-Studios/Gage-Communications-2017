@@ -177,7 +177,6 @@ class Inflector
             '/(hive)s$/i' => '\1',
             '/(drive)s$/i' => '\1',
             '/(dive)s$/i' => '\1',
-            '/(olive)s$/i' => '\1',
             '/([^fo])ves$/i' => '\1fe',
             '/(^analy)ses$/i' => '\1sis',
             '/(analy|diagno|^ba|(p)arenthe|(p)rogno|(s)ynop|(t)he)ses$/i' => '\1\2sis',
@@ -201,27 +200,21 @@ class Inflector
             '.*pox',
             '.*sheep',
             '.*ss',
-            'data',
             'police',
             'pants',
             'clothes',
         ),
         'irregular' => array(
-            'abuses'     => 'abuse',
-            'avalanches' => 'avalanche',
-            'caches'     => 'cache',
-            'criteria'   => 'criterion',
-            'curves'     => 'curve',
-            'emphases'   => 'emphasis',
-            'foes'       => 'foe',
-            'geese'      => 'goose',
-            'graves'     => 'grave',
-            'hoaxes'     => 'hoax',
-            'media'      => 'medium',
-            'neuroses'   => 'neurosis',
-            'waves'      => 'wave',
-            'oases'      => 'oasis',
-            'valves'     => 'valve',
+            'caches'    => 'cache',
+            'criteria'  => 'criterion',
+            'curves'    => 'curve',
+            'emphases'  => 'emphasis',
+            'foes'      => 'foe',
+            'hoaxes'    => 'hoax',
+            'media'     => 'medium',
+            'neuroses'  => 'neurosis',
+            'waves'     => 'wave',
+            'oases'     => 'oasis',
         )
     );
 
@@ -231,18 +224,18 @@ class Inflector
      * @var array
      */
     private static $uninflected = array(
-        '.*?media', 'Amoyese', 'audio', 'bison', 'Borghese', 'bream', 'breeches',
-        'britches', 'buffalo', 'cantus', 'carp', 'chassis', 'clippers', 'cod', 'coitus', 'compensation', 'Congoese',
-        'contretemps', 'coreopsis', 'corps', 'data', 'debris', 'deer', 'diabetes', 'djinn', 'education', 'eland',
-        'elk', 'emoji', 'equipment', 'evidence', 'Faroese', 'feedback', 'fish', 'flounder', 'Foochowese',
-        'Furniture', 'furniture', 'gallows', 'Genevese', 'Genoese', 'Gilbertese', 'gold', 
-        'headquarters', 'herpes', 'hijinks', 'Hottentotese', 'information', 'innings', 'jackanapes', 'jedi',
-        'Kiplingese', 'knowledge', 'Kongoese', 'love', 'Lucchese', 'Luggage', 'mackerel', 'Maltese', 'metadata',
-        'mews', 'moose', 'mumps', 'Nankingese', 'news', 'nexus', 'Niasese', 'nutrition', 'offspring',
-        'Pekingese', 'Piedmontese', 'pincers', 'Pistoiese', 'plankton', 'pliers', 'pokemon', 'police', 'Portuguese',
-        'proceedings', 'rabies', 'rain', 'rhinoceros', 'rice', 'salmon', 'Sarawakese', 'scissors', 'sea[- ]bass',
-        'series', 'Shavese', 'shears', 'sheep', 'siemens', 'species', 'staff', 'swine', 'traffic',
-        'trousers', 'trout', 'tuna', 'us', 'Vermontese', 'Wenchowese', 'wheat', 'whiting', 'wildebeest', 'Yengeese'
+        'Amoyese', 'bison', 'Borghese', 'bream', 'breeches', 'britches', 'buffalo', 'cantus',
+        'carp', 'chassis', 'clippers', 'cod', 'coitus', 'Congoese', 'contretemps', 'corps',
+        'debris', 'diabetes', 'djinn', 'eland', 'elk', 'equipment', 'Faroese', 'flounder',
+        'Foochowese', 'Furniture', 'gallows', 'Genevese', 'Genoese', 'Gilbertese', 'graffiti',
+        'headquarters', 'herpes', 'hijinks', 'Hottentotese', 'information', 'innings',
+        'jackanapes', 'Kiplingese', 'Kongoese', 'Lucchese', 'Luggage', 'mackerel', 'Maltese', '.*?media',
+        'mews', 'moose', 'mumps', 'Nankingese', 'news', 'nexus', 'Niasese',
+        'Pekingese', 'Piedmontese', 'pincers', 'Pistoiese', 'pliers', 'Portuguese',
+        'proceedings', 'rabies', 'rice', 'rhinoceros', 'salmon', 'Sarawakese', 'scissors',
+        'sea[- ]bass', 'series', 'Shavese', 'shears', 'siemens', 'species', 'staff', 'swine',
+        'testes', 'trousers', 'trout', 'tuna', 'Vermontese', 'Wenchowese', 'whiting',
+        'wildebeest', 'Yengeese'
     );
 
     /**
@@ -272,7 +265,7 @@ class Inflector
      */
     public static function classify(string $word) : string
     {
-        return str_replace([' ', '_', '-'], '', ucwords($word, ' _-'));
+        return str_replace(' ', '', ucwords(strtr($word, '_-', '  ')));
     }
 
     /**
@@ -411,7 +404,7 @@ class Inflector
         }
 
         if (preg_match('/(.*)\\b(' . self::$plural['cacheIrregular'] . ')$/i', $word, $regs)) {
-            self::$cache['pluralize'][$word] = $regs[1] . $word[0] . substr(self::$plural['merged']['irregular'][strtolower($regs[2])], 1);
+            self::$cache['pluralize'][$word] = $regs[1] . substr($word, 0, 1) . substr(self::$plural['merged']['irregular'][strtolower($regs[2])], 1);
 
             return self::$cache['pluralize'][$word];
         }
@@ -464,7 +457,7 @@ class Inflector
         }
 
         if (preg_match('/(.*)\\b(' . self::$singular['cacheIrregular'] . ')$/i', $word, $regs)) {
-            self::$cache['singularize'][$word] = $regs[1] . $word[0] . substr(self::$singular['merged']['irregular'][strtolower($regs[2])], 1);
+            self::$cache['singularize'][$word] = $regs[1] . substr($word, 0, 1) . substr(self::$singular['merged']['irregular'][strtolower($regs[2])], 1);
 
             return self::$cache['singularize'][$word];
         }

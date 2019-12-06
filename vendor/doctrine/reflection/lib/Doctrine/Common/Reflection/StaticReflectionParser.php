@@ -149,11 +149,11 @@ class StaticReflectionParser implements ReflectionProviderInterface
             }
         }
         $tokenParser = new TokenParser($contents);
-        $docComment  = '';
-        $last_token  = false;
+        $docComment = '';
+        $last_token = false;
 
         while ($token = $tokenParser->next(false)) {
-            switch ($token[0]) {
+            if (is_array($token)) {switch ($token[0]) {
                 case T_USE:
                     $this->useStatements = array_merge($this->useStatements, $tokenParser->parseUseStatement());
                     break;
@@ -161,10 +161,8 @@ class StaticReflectionParser implements ReflectionProviderInterface
                     $docComment = $token[1];
                     break;
                 case T_CLASS:
-                    if ($last_token !== T_PAAMAYIM_NEKUDOTAYIM) {
-                        $this->docComment['class'] = $docComment;
-                        $docComment                = '';
-                    }
+                    if ($last_token !== T_PAAMAYIM_NEKUDOTAYIM) {$this->docComment['class'] = $docComment;
+                    $docComment = '';}
                     break;
                 case T_VAR:
                 case T_PRIVATE:
@@ -172,7 +170,7 @@ class StaticReflectionParser implements ReflectionProviderInterface
                 case T_PUBLIC:
                     $token = $tokenParser->next();
                     if ($token[0] === T_VARIABLE) {
-                        $propertyName                                = substr($token[1], 1);
+                        $propertyName = substr($token[1], 1);
                         $this->docComment['property'][$propertyName] = $docComment;
                         continue 2;
                     }
@@ -185,40 +183,36 @@ class StaticReflectionParser implements ReflectionProviderInterface
                     // The next string after function is the name, but
                     // there can be & before the function name so find the
                     // string.
-                    while (($token = $tokenParser->next()) && $token[0] !== T_STRING) {
-                        continue;
-                    }
-                    $methodName                              = $token[1];
+                    while (($token = $tokenParser->next()) && $token[0] !== T_STRING);
+                    $methodName = $token[1];
                     $this->docComment['method'][$methodName] = $docComment;
-                    $docComment                              = '';
+                    $docComment = '';
                     break;
                 case T_EXTENDS:
                     $this->parentClassName = $tokenParser->parseClass();
-                    $nsPos                 = strpos($this->parentClassName, '\\');
-                    $fullySpecified        = false;
+                    $nsPos = strpos($this->parentClassName, '\\');
+                    $fullySpecified = false;
                     if ($nsPos === 0) {
                         $fullySpecified = true;
                     } else {
                         if ($nsPos) {
-                            $prefix  = strtolower(substr($this->parentClassName, 0, $nsPos));
+                            $prefix = strtolower(substr($this->parentClassName, 0, $nsPos));
                             $postfix = substr($this->parentClassName, $nsPos);
                         } else {
-                            $prefix  = strtolower($this->parentClassName);
+                            $prefix = strtolower($this->parentClassName);
                             $postfix = '';
                         }
                         foreach ($this->useStatements as $alias => $use) {
-                            if ($alias !== $prefix) {
-                                continue;
-                            }
-
-                            $this->parentClassName = '\\' . $use . $postfix;
-                            $fullySpecified        = true;
+                            if ($alias == $prefix) {
+                                $this->parentClassName = '\\' . $use . $postfix;
+                                $fullySpecified = true;
+                          }
                         }
                     }
-                    if (! $fullySpecified) {
+                    if (!$fullySpecified) {
                         $this->parentClassName = '\\' . $this->namespace . '\\' . $this->parentClassName;
                     }
-                    break;
+                    break;}
             }
 
             $last_token = $token[0];

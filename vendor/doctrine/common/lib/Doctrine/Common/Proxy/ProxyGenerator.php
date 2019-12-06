@@ -938,11 +938,39 @@ EOT;
      */
     private function getParameterType(\ReflectionParameter $parameter)
     {
-        if ( ! $parameter->hasType()) {
-            return null;
+        if (method_exists($parameter, 'hasType')) {
+            if ( ! $parameter->hasType()) {
+                return '';
+            }
+
+            return $this->formatType($parameter->getType(), $parameter->getDeclaringFunction(), $parameter);
         }
 
-        return $this->formatType($parameter->getType(), $parameter->getDeclaringFunction(), $parameter);
+        // For PHP 5.x, we need to pick the type hint in the old way (to be removed for PHP 7.0+)
+        if ($parameter->isArray()) {
+            return 'array';
+        }
+
+        if ($parameter->isCallable()) {
+            return 'callable';
+        }
+
+        try {
+            $parameterClass = $parameter->getClass();
+
+            if ($parameterClass) {
+                return '\\' . $parameterClass->getName();
+            }
+        } catch (\ReflectionException $previous) {
+            throw UnexpectedValueException::invalidParameterTypeHint(
+                $class->getName(),
+                $method->getName(),
+                $parameter->getName(),
+                $previous
+            );
+        }
+
+        return null;
     }
 
     /**
@@ -990,7 +1018,7 @@ EOT;
      */
     private function getMethodReturnType(\ReflectionMethod $method)
     {
-        if ( ! $method->hasReturnType()) {
+        if ( ! method_exists($method, 'hasReturnType') || ! $method->hasReturnType()) {
             return '';
         }
 
@@ -1004,7 +1032,7 @@ EOT;
      */
     private function shouldProxiedMethodReturn(\ReflectionMethod $method)
     {
-        if ( ! $method->hasReturnType()) {
+        if ( ! method_exists($method, 'hasReturnType') || ! $method->hasReturnType()) {
             return true;
         }
 
@@ -1023,7 +1051,7 @@ EOT;
         \ReflectionMethod $method,
         \ReflectionParameter $parameter = null
     ) {
-        $name      = (string) $type;
+        $name = method_exists($type, 'getName') ? $type->getName() : (string) $type;
         $nameLower = strtolower($name);
 
         if ('self' === $nameLower) {
