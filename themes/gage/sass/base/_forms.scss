@@ -50,3 +50,15 @@ button[type=submit]
   -webkit-appearance: none;
   appearance: none;
 }
+
+.white-button
+{
+  display: inline-block;
+  padding: 0 25px;
+  color: black;
+  background: white;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  text-decoration: none;
+}

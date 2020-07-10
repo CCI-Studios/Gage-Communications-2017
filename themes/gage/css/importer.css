@@ -73,6 +73,16 @@ button[type=submit] {
   -webkit-appearance: none;
   appearance: none; }
 
+.white-button {
+  display: inline-block;
+  padding: 0 25px;
+  color: black;
+  background: white;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  text-decoration: none; }
+
 .region-splash {
   background: url(../images/bg-splash.jpg?v2) no-repeat center center;
   background-size: cover;
@@ -601,21 +611,14 @@ button[type=submit] {
         .block--home-services .services li {
           width: 125px;
           margin: 0 8px 30px 8px; } }
-    .block--home-services .services a {
-      display: block;
-      color: white;
-      text-transform: uppercase;
-      text-decoration: none; }
-      .block--home-services .services a:hover {
-        text-decoration: underline; }
-      .block--home-services .services a:before {
+      .block--home-services .services li:before {
         content: "";
         display: block;
         height: 120px;
         background-repeat: no-repeat;
         background-position: center center; }
         @media (max-width: 940px) {
-          .block--home-services .services a:before {
+          .block--home-services .services li:before {
             height: 80px; } }
   .block--home-services .pr:before {
     background-image: url(../images/icon-pr-white.svg); }
