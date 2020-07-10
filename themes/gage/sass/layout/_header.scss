@@ -6,6 +6,15 @@
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   box-sizing: border-box;
 
+  &
+  {
+    @media (max-width: 360px)
+    {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
   &:after
   {
     content: "";
@@ -71,39 +80,55 @@
   }
 }
 
-.block--social-header
+.block--social-menu-header
 {
   margin-right: -5px;
 
-  .field--name-body
+  &
   {
-    ul
+    @media (max-width: 760px)
     {
-      list-style: none;
+      margin-right: 0;
+      width: 160px;
     }
-    li
-    {
-      display: inline-block;
-      vertical-align: top;
-    }
-    a
-    {
-      font-size: 0;
-      display: block;
-      width: 15px;
-      height: 15px;
-      padding: 5px;
-      background-repeat: no-repeat;
-      background-position: center center;
-    }
-    .ig
-    {
-      background-image: url(../images/social-ig-black.svg);
-    }
-    .in
-    {
-      background-image: url(../images/social-in-black.svg);
-    }
+  }
+
+  ul
+  {
+    list-style: none;
+    line-height: 60px;
+  }
+  li
+  {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  a
+  {
+    font-size: 0;
+    display: block;
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 15px 15px;
+  }
+  .ig
+  {
+    background-image: url(../images/social-ig-black.svg);
+  }
+  .in
+  {
+    background-image: url(../images/social-in-black.svg);
+  }
+  .fb
+  {
+    background-image: url(../images/social-fb-black.svg);
+  }
+  .tw
+  {
+    background-image: url(../images/social-tw-black.svg);
   }
 }
 
@@ -272,7 +297,7 @@
   .menu
   {
     list-style: none;
-    line-height: 85px;
+    line-height: 60px;
 
     &
     {
@@ -338,7 +363,7 @@
   display: none;
   float: right;
   clear: right;
-  margin-top: 20px;
+  margin-top: 16px;
 
   .menu-button
   {
@@ -370,6 +395,7 @@
       width: 100%;
       height: 0;
       border-bottom: 2px solid black;
+      transform: rotateZ(0.00001deg);
     }
   }
 
