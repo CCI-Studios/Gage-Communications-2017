@@ -14,8 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @EntityQueueHandler(
  *   id = "multiple",
- *   title = @Translation("Multiple subqueues"),
- *   description = @Translation("Provides the ability to add many subqueues to a single queue."),
+ *   title = @Translation("Multiple subqueues")
  * )
  */
 class Multiple extends EntityQueueHandlerBase implements ContainerFactoryPluginInterface {

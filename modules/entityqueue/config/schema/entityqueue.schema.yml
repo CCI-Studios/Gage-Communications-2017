@@ -40,9 +40,9 @@ entityqueue.entity_queue.*:
         act_as_queue:
           type: boolean
           label: 'Act as queue'
-        reverse:
+        reverse_in_admin:
           type: boolean
-          label: 'New items will be added to the top of the queue, instead of the bottom'
+          label: 'Reverse order in admin view'
 
 # Base schema for all entity queue handler schemas.
 entityqueue_handler_configuration:

@@ -2,10 +2,11 @@ name: Entityqueue
 type: module
 description: 'Allows users to collect entities in arbitrarily ordered lists.'
 package: Entityqueue
-core_version_requirement: ^8.7.7 || ^9
+# core: 8.x
 configure: entity.entity_queue.collection
 
-# Information added by Drupal.org packaging script on 2020-04-15
-version: '8.x-1.0'
+# Information added by Drupal.org packaging script on 2019-05-29
+version: '8.x-1.0-beta5'
+core: '8.x'
 project: 'entityqueue'
-datestamp: 1586937739
+datestamp: 1559148190

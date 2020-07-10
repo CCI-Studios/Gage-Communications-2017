@@ -21,7 +21,7 @@ provider: null
 plugin: 'block_content:7dcc5e6c-e528-4ffa-af82-9064785cc66a'
 settings:
   id: 'block_content:7dcc5e6c-e528-4ffa-af82-9064785cc66a'
-  label: 'our mission'
+  label: 'Our Mission'
   provider: block_content
   label_display: visible
   status: true

@@ -4,8 +4,6 @@ namespace Drupal\entityqueue;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
-use Drupal\Core\Entity\EntityTypeInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Defines a class that builds a listing of entity subqueues.
@@ -20,22 +18,6 @@ class EntitySubqueueListBuilder extends EntityListBuilder {
   protected $queueId;
 
   /**
-   * The entity repository.
-   *
-   * @var \Drupal\Core\Entity\EntityRepositoryInterface
-   */
-  protected $entityRepository;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type) {
-    $instance = parent::createInstance($container, $entity_type);
-    $instance->entityRepository = $container->get('entity.repository');
-    return $instance;
-  }
-
-  /**
    * Sets the entity queue ID.
    *
    * @param string $queue_id
@@ -47,17 +29,6 @@ class EntitySubqueueListBuilder extends EntityListBuilder {
     $this->queueId = $queue_id;
 
     return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function load() {
-    $entities = parent::load();
-    foreach ($entities as $key => $entity) {
-      $entities[$key] = $this->entityRepository->getTranslationFromContext($entity);
-    }
-    return $entities;
   }
 
   /**
@@ -83,6 +54,7 @@ class EntitySubqueueListBuilder extends EntityListBuilder {
     return $query->execute();
   }
 
+
   /**
    * {@inheritdoc}
    */
@@ -98,7 +70,7 @@ class EntitySubqueueListBuilder extends EntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     $row['label'] = $entity->label();
-    $row['items'] = $this->formatPlural(count($entity->items), '@count item', '@count items');
+    $row['items'] = $this->t('@count items', ['@count' => count($entity->items)]);
 
     return $row + parent::buildRow($entity);
   }
