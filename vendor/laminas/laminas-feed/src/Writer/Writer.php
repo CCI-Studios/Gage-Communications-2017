@@ -243,34 +243,4 @@ class Writer
             || $manager->has($feedRendererName)
             || $manager->has($entryRendererName);
     }
-
-    /**
-     * Does the extension manager have the named extension?
-     *
-     * This method exists to allow us to test if an extension is present in the
-     * extension manager. It may be used by registerExtension() to determine if
-     * the extension has items present in the manager, or by
-     * registerCoreExtension() to determine if the core extension has entries
-     * in the extension manager. In the latter case, this can be useful when
-     * adding new extensions in a minor release, as custom extension manager
-     * implementations may not yet have an entry for the extension, which would
-     * then otherwise cause registerExtension() to fail.
-     *
-     * @param string $name
-     * @return bool
-     */
-    protected static function hasExtension($name)
-    {
-        $manager   = static::getExtensionManager();
-
-        $feedName          = $name . '\Feed';
-        $entryName         = $name . '\Entry';
-        $feedRendererName  = $name . '\Renderer\Feed';
-        $entryRendererName = $name . '\Renderer\Entry';
-
-        return $manager->has($feedName)
-            || $manager->has($entryName)
-            || $manager->has($feedRendererName)
-            || $manager->has($entryRendererName);
-    }
 }
