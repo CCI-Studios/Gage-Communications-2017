@@ -377,7 +377,6 @@ button[type=submit] {
   padding: 80px 25px;
   text-align: center; }
   .block--get-engaged h2 {
-    font-size: 3em;
     line-height: 1; }
     @media (max-width: 760px) {
       .block--get-engaged h2 {
@@ -423,7 +422,6 @@ button[type=submit] {
     .block--footer-find-us {
       padding-left: 110px; } }
   .block--footer-find-us h2 {
-    font-size: 2.25em;
     line-height: 1;
     margin-bottom: 25px;
     background: black; }
@@ -453,7 +451,6 @@ button[type=submit] {
     width: 100%;
     border-top: 1px solid white; }
   .block--footer-contact-us h2 {
-    font-size: 2.25em;
     line-height: 1;
     margin-bottom: 25px; }
   .block--footer-contact-us p {
@@ -510,14 +507,20 @@ button[type=submit] {
       text-align: center; } }
 
 .layout-main h1 {
-  font-size: 48px;
+  font-size: 44px;
   line-height: normal;
   padding-bottom: 25px;
   margin-bottom: 25px;
   border-bottom: 2px solid black; }
   @media (max-width: 760px) {
     .layout-main h1 {
-      font-size: 2em; } }
+      font-size: 32px; } }
+
+.layout-main h2 {
+  font-size: 36px; }
+  @media (max-width: 760px) {
+    .layout-main h2 {
+      font-size: 26px; } }
 
 .layout-main p {
   margin-bottom: 1.5em; }
@@ -590,7 +593,6 @@ button[type=submit] {
     max-width: 960px;
     margin: 0 auto; }
   .block--home-services h2 {
-    font-size: 2.75em;
     text-align: center;
     padding-bottom: 25px;
     margin-bottom: 25px;
@@ -638,7 +640,6 @@ button[type=submit] {
     max-width: 960px;
     margin: 0 auto; }
   .block--home-team h2 {
-    font-size: 2.75em;
     text-align: center;
     padding-bottom: 25px;
     margin-bottom: 25px;
@@ -799,7 +800,6 @@ button[type=submit] {
       .node--team-member--full .node__content {
         padding-top: 0; } }
   .node--team-member--full .node__content > h2 {
-    font-size: 3.25em;
     line-height: 1;
     padding-bottom: 12px;
     border-bottom: 2px solid black;
@@ -879,7 +879,6 @@ button[type=submit] {
         max-width: none;
         padding: 20px; } }
   .node--type-news-article.node--view-mode-teaser h2 {
-    font-size: 2.5em;
     padding-bottom: 15px;
     border-bottom: 2px solid black;
     line-height: normal; }
@@ -953,7 +952,6 @@ button[type=submit] {
     max-width: 960px;
     margin: 0 auto; }
   .block--our-mission h2 {
-    font-size: 44px;
     text-align: center;
     padding-bottom: 20px;
     border-bottom: 2px solid white;
@@ -996,7 +994,6 @@ button[type=submit] {
     max-width: 960px;
     margin: 0 auto; }
   .block--vision h2 {
-    font-size: 3.25em;
     text-align: left;
     padding-bottom: 20px;
     border-bottom: 2px solid black;
@@ -1066,7 +1063,6 @@ ol.our-mission {
     max-width: 960px;
     margin: 0 auto; }
   .block--services-list h2 {
-    font-size: 3.25em;
     text-align: left;
     padding-bottom: 20px;
     border-bottom: 2px solid black;
