@@ -966,12 +966,12 @@ button[type=submit] {
     margin: 0; }
     .block--our-mission ol li {
       display: block;
-      width: 33.333%;
+      width: 50%;
       margin: 0;
       float: left;
       counter-increment: step-counter;
       box-sizing: border-box;
-      padding: 0 20px; }
+      padding: 0 25px; }
       @media (max-width: 760px) {
         .block--our-mission ol li {
           float: none;
