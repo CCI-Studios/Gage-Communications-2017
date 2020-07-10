@@ -1,19 +1,14 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\search_api_page\Form\SearchApiPageBlockForm.
- */
-
 namespace Drupal\search_api_page\Form;
 
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Language\LanguageInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Url;
-use Drupal\search_api_page\Entity\SearchApiPage;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -36,71 +31,110 @@ class SearchApiPageBlockForm extends FormBase {
   protected $renderer;
 
   /**
+   * The page id.
+   *
+   * @var string
+   */
+  protected $pageId = 'uninitialized';
+
+  /**
+   * The storage for Search API Page entities.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  protected $pageStorage;
+
+  /**
    * Constructs a new SearchBlockForm.
    *
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
+   * @param \Drupal\Core\Entity\EntityStorageInterface $pageStorage
+   *   The search API page storage
    */
-  public function __construct(LanguageManagerInterface $language_manager, RendererInterface $renderer) {
+  public function __construct(LanguageManagerInterface $language_manager, RendererInterface $renderer, EntityStorageInterface $pageStorage) {
     $this->languageManager = $language_manager;
     $this->renderer = $renderer;
+    $this->pageStorage = $pageStorage;
   }
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
+    /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager */
+    $entityTypeManager = $container->get('entity_type.manager');
     return new static(
       $container->get('language_manager'),
-      $container->get('renderer')
+      $container->get('renderer'),
+      $entityTypeManager->getStorage('search_api_page')
     );
+  }
+
+  /**
+   * Sets the search API page id.
+   *
+   * @param string $pageId
+   *   Search API page ID.
+   */
+  public function setPageId($pageId) {
+    $this->pageId = $pageId;
   }
 
   /**
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'search_api_page_block_form';
+    return 'search_api_page_block_form_' . $this->pageId;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, $args = array()) {
+  public function buildForm(array $form, FormStateInterface $form_state, $args = []) {
     /* @var $search_api_page \Drupal\search_api_page\SearchApiPageInterface */
-    $search_api_page = SearchApiPage::load($args['search_api_page']);
+    $search_api_page = $this->pageStorage->load($this->pageId);
 
     $langcode = $this->languageManager->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
 
-    $form['search_api_page'] = array(
+    $form['search_api_page'] = [
       '#type' => 'value',
       '#value' => $search_api_page->id(),
-    );
+    ];
 
     $default_value = '';
     if (isset($args['keys'])) {
       $default_value = $args['keys'];
     }
-    elseif ($search_value = $this->getRequest()->get('keys')) {
-      $default_value = $search_value;
+
+    if ($default_value === '') {
+      $request = $this->getRequest();
+      if (trim($search_api_page->getPath(), '/') === trim($request->getPathInfo(), '/')) {
+        $default_value = $this->getRequest()->get('keys');
+      }
     }
 
-    $form['keys'] = array(
+    $keys_title = $this->t(
+      'Enter the terms you wish to search for.',
+      [],
+      ['langcode' => $langcode]
+    );
+    $form['keys'] = [
       '#type' => 'search',
-      '#title' => $this->t('Search', array(), array('langcode' => $langcode)),
+      '#title' => $this->t('Search', [], ['langcode' => $langcode]),
       '#title_display' => 'invisible',
       '#size' => 15,
       '#default_value' => $default_value,
-      '#attributes' => array('title' => $this->t('Enter the terms you wish to search for.', array(), array('langcode' => $langcode))),
-    );
+      '#attributes' => ['title' => $keys_title],
+    ];
 
-    $form['actions'] = array('#type' => 'actions');
-    $form['actions']['submit'] = array(
+    $form['actions'] = ['#type' => 'actions'];
+    $form['actions']['submit'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Search', array(), array('langcode' => $langcode)),
-    );
+      '#value' => $this->t('Search', [], ['langcode' => $langcode]),
+    ];
 
     if (!$search_api_page->getCleanUrl()) {
       $route = 'search_api_page.' . $langcode . '.' . $search_api_page->id();
@@ -113,6 +147,12 @@ class SearchApiPageBlockForm extends FormBase {
     $this->renderer->addCacheableDependency($form, $search_api_page->getConfigDependencyName());
     $this->renderer->addCacheableDependency($form, $langcode);
 
+    // Match the search form styling of Drupal core.
+    $form['#attributes']['class'][] = 'search-form';
+    $form['#attributes']['class'][] = 'search-block-form';
+    $form['#attributes']['class'][] = 'container-inline';
+    $form['actions']['submit']['#attributes']['class'][] = 'search-form__submit';
+
     return $form;
   }
 
@@ -121,10 +161,10 @@ class SearchApiPageBlockForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // This form submits to the search page, so processing happens there.
-    $keys = $form_state->getValue('keys');
     $langcode = $this->languageManager->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
-    /* @var $searchApiPage \Drupal\search_api_page\SearchApiPageInterface */
-    $form_state->setRedirectUrl(Url::fromRoute('search_api_page.' . $langcode . '.' . $form_state->getValue('search_api_page'), array('keys' => $keys)));
+    $route = 'search_api_page.' . $langcode . '.' . $form_state->getValue('search_api_page');
+    $routeArguments = ['keys' => $form_state->getValue('keys')];
+    $form_state->setRedirectUrl(Url::fromRoute($route, $routeArguments));
   }
 
 }

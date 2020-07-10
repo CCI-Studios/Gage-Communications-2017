@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * This module allows you to add Pager blocks to navigate through entities.
- */
-
-/**
  * Implements hook_help().
  */
 function entity_pager_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
@@ -28,10 +23,18 @@ function entity_pager_help($route_name, \Drupal\Core\Routing\RouteMatchInterface
   }
 }
 
+/**
+ * Preprocesses an entity pager template.
+ *
+ * @param $variables
+ */
 function template_preprocess_entity_pager(&$variables) {
   $options = $variables['view']->style_plugin->options;
 
-  $entityPager = new \Drupal\entity_pager\EntityPager($variables['view'], $options['next_prev']);
+  /** @var \Drupal\entity_pager\EntityPagerFactory $factory */
+  $factory = \Drupal::service('entity_pager.factory');
+
+  $entityPager = $factory->get($variables['view'], $options);
 
   $variables['links'] = $entityPager->getLinks();
   $variables['count_word'] = $entityPager->getCountWord();

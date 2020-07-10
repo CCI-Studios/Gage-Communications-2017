@@ -10,21 +10,29 @@ use Drupal\Core\Config\Entity\ConfigEntityInterface;
 interface EntityQueueInterface extends ConfigEntityInterface {
 
   /**
-   * Gets the EntityQueueHandler plugin id.
+   * Gets the EntityQueueHandler plugin ID.
    *
    * @return string
    */
   public function getHandler();
 
   /**
+   * Gets the handler plugin configuration for this queue.
+   *
+   * @return mixed[]
+   *   The handler plugin configuration.
+   */
+  public function getHandlerConfiguration();
+
+  /**
    * Sets the EntityQueueHandler.
    *
-   * @param string $handler
+   * @param string $handler_id
    *   The handler name.
    *
    * @return $this
    */
-  public function setHandler($handler);
+  public function setHandler($handler_id);
 
   /**
    * Gets the EntityQueueHandler plugin object.
@@ -32,6 +40,16 @@ interface EntityQueueInterface extends ConfigEntityInterface {
    * @return EntityQueueHandlerInterface
    */
   public function getHandlerPlugin();
+
+  /**
+   * Sets the EntityQueueHandler plugin object.
+   *
+   * @param \Drupal\entityqueue\EntityQueueHandlerInterface $handler
+   *   A queue handler plugin.
+   *
+   * @return $this
+   */
+  public function setHandlerPlugin($handler);
 
   /**
    * Gets the ID of the target entity type.
@@ -60,25 +78,23 @@ interface EntityQueueInterface extends ConfigEntityInterface {
    *
    * If TRUE, when a maximum size is set and it is exceeded, the queue will be
    * truncated to the maximum size by removing items from the front of the
-   * queue.
+   * queue. However, if the 'reverse' option is TRUE as well, the items that
+   * exceed the maximum size will be removed from the top instead.
    *
    * @return bool
    */
   public function getActAsQueue();
 
   /**
-   * Returns the behavior of editing the queue's items.
+   * Returns the behavior of adding new items to a queue.
    *
-   * Ordinarily, queues are arranged with the front of the queue (where items
-   * will be removed) on top, and the back (where items will be added) on the
-   * bottom.
-   *
-   * If TRUE, this will display the queue such that items will be added to the
-   * top and removed from the bottom.
+   * By default, new items are added to the bottom of the queue. If the
+   * 'reverse' setting is set to TRUE, the new items will be added to the top
+   * of the queue instead.
    *
    * @return bool
    */
-  public function getReverseInAdmin();
+  public function isReversed();
 
   /**
    * Gets the selection settings used by a subqueue's 'items' reference field.
@@ -102,8 +118,7 @@ interface EntityQueueInterface extends ConfigEntityInterface {
    *   - max_size: The maximum number of items that this queue can hold.
    *   - act_as_queue: The behavior of exceeding the maximum number of queue
    *     items.
-   *   - reverse_in_admin: Show the items in reverse order when editing a
-   *     subqueue.
+   *   - reverse: New items will be added to the top of the queue.
    */
   public function getQueueSettings();
 

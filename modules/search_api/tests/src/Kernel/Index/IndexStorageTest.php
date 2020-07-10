@@ -35,23 +35,18 @@ class IndexStorageTest extends KernelTestBase {
 
     $this->installSchema('system', 'key_value_expire');
     $this->installEntitySchema('search_api_task');
+    $this->installConfig('search_api');
 
     $this->storage = $this->container
       ->get('entity_type.manager')
       ->getStorage('search_api_index');
-
-    // Set the default tracker since that's needed when creating a bare index.
-    \Drupal::configFactory()
-      ->getEditable('search_api.settings')
-      ->set('default_tracker', 'default')
-      ->save();
   }
 
   /**
    * Tests all CRUD operations as a queue of operations.
    */
   public function testIndexCrud() {
-    $this->assertTrue($this->storage instanceof ConfigEntityStorage, 'The Search API Index storage controller is loaded.');
+    $this->assertInstanceOf(ConfigEntityStorage::class, $this->storage, 'The Search API Index storage controller is loaded.');
 
     $index = $this->indexCreate();
     $this->indexLoad($index);
@@ -71,7 +66,7 @@ class IndexStorageTest extends KernelTestBase {
     ];
 
     $index = $this->storage->create($index_data);
-    $this->assertTrue($index instanceof IndexInterface, 'The newly created entity is a search index.');
+    $this->assertInstanceOf(IndexInterface::class, $index, 'The newly created entity is a search index.');
     $index->save();
 
     return $index;

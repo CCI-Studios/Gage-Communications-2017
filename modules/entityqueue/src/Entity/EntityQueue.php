@@ -22,7 +22,8 @@ use Drupal\entityqueue\EntityQueueInterface;
  *       "add" = "Drupal\entityqueue\Form\EntityQueueForm",
  *       "edit" = "Drupal\entityqueue\Form\EntityQueueForm",
  *       "delete" = "Drupal\Core\Entity\EntityDeleteForm"
- *     }
+ *     },
+ *     "access" = "Drupal\entityqueue\EntityQueueAccessControlHandler",
  *   },
  *   admin_permission = "administer entityqueue",
  *   config_prefix = "entity_queue",
@@ -87,7 +88,7 @@ class EntityQueue extends ConfigEntityBundleBase implements EntityQueueInterface
     'min_size' => 0,
     'max_size' => 0,
     'act_as_queue' => FALSE,
-    'reverse_in_admin' => FALSE,
+    'reverse' => FALSE,
   ];
 
   /**
@@ -142,26 +143,26 @@ class EntityQueue extends ConfigEntityBundleBase implements EntityQueueInterface
   /**
    * {@inheritdoc}
    */
-  public function getReverseInAdmin() {
-    return isset($this->queue_settings['reverse_in_admin']) ? $this->queue_settings['reverse_in_admin'] : FALSE;
+  public function isReversed() {
+    return isset($this->queue_settings['reverse']) ? $this->queue_settings['reverse'] : FALSE;
   }
 
   /**
    * {@inheritdoc}
    */
   public function getEntitySettings() {
-    return $this->entity_settings;
+    return $this->entity_settings + [
+      // Ensure that we always have an empty array by default for the
+      // 'handler_settings', regardless of the incoming form values.
+      'handler_settings' => [],
+    ];
   }
 
   /**
    * {@inheritdoc}
    */
   public function getQueueSettings() {
-    return $this->queue_settings + [
-      // Ensure that we always have an empty array by default for the
-      // 'handler_settings', regardless of the incoming form values.
-      'handler_settings' => []
-    ];
+    return $this->queue_settings;
   }
 
   /**
@@ -174,9 +175,16 @@ class EntityQueue extends ConfigEntityBundleBase implements EntityQueueInterface
   /**
    * {@inheritdoc}
    */
-  public function setHandler($handler) {
-    $this->handler = $handler;
-    $this->getPluginCollection()->addInstanceID($handler, []);
+  public function getHandlerConfiguration() {
+    return $this->handler_configuration;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setHandler($handler_id) {
+    $this->handler = $handler_id;
+    $this->getPluginCollection()->addInstanceID($handler_id, []);
 
     return $this;
   }
@@ -186,6 +194,15 @@ class EntityQueue extends ConfigEntityBundleBase implements EntityQueueInterface
    */
   public function getHandlerPlugin() {
     return $this->getPluginCollection()->get($this->handler);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setHandlerPlugin($handler) {
+    $this->getPluginCollection()->set($handler->getPluginId(), $handler);
+
+    return $this;
   }
 
   /**
@@ -315,6 +332,9 @@ class EntityQueue extends ConfigEntityBundleBase implements EntityQueueInterface
 
   /**
    * {@inheritdoc}
+   *
+   * @return static[]
+   *   An array of entity queue objects, indexed by their IDs.
    */
   public static function loadMultipleByTargetType($target_entity_type_id) {
     $ids = \Drupal::entityTypeManager()->getStorage('entity_queue')->getQuery()

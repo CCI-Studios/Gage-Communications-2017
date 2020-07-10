@@ -43,10 +43,12 @@ class IndexImportTest extends KernelTestBase {
     parent::setUp();
 
     $this->installSchema('search_api', ['search_api_item']);
-    $this->installSchema('system', ['router']);
     $this->installSchema('user', ['users_data']);
     $this->installEntitySchema('entity_test_mulrev_changed');
     $this->installEntitySchema('search_api_task');
+    $this->installConfig('search_api');
+    $this->installConfig('system');
+    $this->config('system.site')->set('UUID', $this->container->get('uuid')->generate());
 
     // Do not use a batch for tracking the initial items after creating an
     // index when running the tests via the GUI. Otherwise, it seems Drupal's
@@ -54,12 +56,6 @@ class IndexImportTest extends KernelTestBase {
     if (!Utility::isRunningInCli()) {
       \Drupal::state()->set('search_api_use_tracking_batch', FALSE);
     }
-
-    // Set tracking page size so tracking will work properly.
-    \Drupal::configFactory()
-      ->getEditable('search_api.settings')
-      ->set('tracking_page_size', 100)
-      ->save();
 
     $this->installConfig(['search_api_test_db']);
 

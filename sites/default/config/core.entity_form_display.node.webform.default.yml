@@ -24,6 +24,7 @@ content:
       rows: 9
       summary_rows: 3
       placeholder: ''
+      show_summary: false
     third_party_settings: {  }
     region: content
   created:
@@ -74,11 +75,13 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
     region: content
   webform:
     weight: 0
-    settings: {  }
+    settings:
+      default_data: true
     third_party_settings: {  }
     type: webform_entity_reference_select
     region: content

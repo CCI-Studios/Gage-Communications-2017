@@ -26,6 +26,7 @@ class AutocompleteTest extends KernelTestBase {
     'entity_test',
     'field',
     'system',
+    'filter',
     'text',
     'user',
     'search_api',
@@ -57,16 +58,10 @@ class AutocompleteTest extends KernelTestBase {
     parent::setUp();
 
     $this->installSchema('search_api', ['search_api_item']);
-    $this->installSchema('system', ['router']);
     $this->installSchema('user', ['users_data']);
     $this->installEntitySchema('entity_test_mulrev_changed');
     $this->installEntitySchema('search_api_task');
-
-    // Set the tracking page size so tracking will work properly.
-    \Drupal::configFactory()
-      ->getEditable('search_api.settings')
-      ->set('tracking_page_size', 100)
-      ->save();
+    $this->installConfig('search_api');
 
     // Do not use a batch for tracking the initial items after creating an
     // index when running the tests via the GUI. Otherwise, it seems Drupal's
@@ -135,13 +130,7 @@ class AutocompleteTest extends KernelTestBase {
   protected function assertSuggestionsEqual(array $expected, array $suggestions) {
     $terms = [];
     foreach ($suggestions as $suggestion) {
-      $keys = $suggestion->getSuggestedKeys();
-      if ($keys === NULL) {
-        $keys = $suggestion->getSuggestionPrefix();
-        $keys .= $suggestion->getUserInput();
-        $keys .= $suggestion->getSuggestionSuffix();
-      }
-      $terms[$keys] = $suggestion->getResultsCount();
+      $terms[$suggestion->getSuggestedKeys()] = $suggestion->getResultsCount();
     }
     $this->assertEquals($expected, $terms);
   }

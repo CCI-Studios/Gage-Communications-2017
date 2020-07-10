@@ -23,21 +23,21 @@ class EntitySubqueueAccessControlHandler extends EntityAccessControlHandler {
     switch ($operation) {
       case 'view':
         return AccessResult::allowedIfHasPermission($account, 'access content');
-        break;
+      break;
 
       case 'update':
         return AccessResult::allowedIfHasPermissions($account, ["update {$entity->bundle()} entityqueue", 'manipulate all entityqueues', 'administer entityqueue'], 'OR');
-        break;
+      break;
 
       case 'delete':
         $can_delete_subqueue = AccessResult::allowedIf(!$entity->getQueue()->getHandlerPlugin()->hasAutomatedSubqueues());
 
-        $access_result = AccessResult
-          ::allowedIfHasPermissions($account, ["delete {$entity->bundle()} entityqueue", 'manipulate all entityqueues', 'administer entityqueue'], 'OR')
-          ->andIf($can_delete_subqueue);
+        $access_result = AccessResult::allowedIfHasPermissions($account, ["delete {$entity->bundle()} entityqueue", 'manipulate all entityqueues', 'administer entityqueue'], 'OR')
+          ->andIf($can_delete_subqueue)
+          ->addCacheableDependency($entity->getQueue());
 
         return $access_result;
-        break;
+      break;
 
       default:
         // No opinion.
@@ -54,6 +54,7 @@ class EntitySubqueueAccessControlHandler extends EntityAccessControlHandler {
     if ($entity_bundle) {
       $queue = EntityQueue::load($entity_bundle);
       $access_result = AccessResult::allowedIf(!$queue->getHandlerPlugin()->hasAutomatedSubqueues());
+      $access_result->addCacheableDependency($queue);
     }
 
     return $access_result;

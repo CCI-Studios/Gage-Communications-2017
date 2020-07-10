@@ -2,11 +2,14 @@
 
 namespace Drupal\search_api;
 
+use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
+use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\TempStore\TempStoreException;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\Entity\Index;
 use Drupal\search_api\Item\FieldInterface;
@@ -14,7 +17,7 @@ use Drupal\search_api\Processor\ProcessorInterface;
 use Drupal\search_api\Query\QueryInterface;
 use Drupal\search_api\Query\ResultSetInterface;
 use Drupal\search_api\Tracker\TrackerInterface;
-use Drupal\user\SharedTempStore;
+use Drupal\Core\TempStore\SharedTempStore;
 
 /**
  * Represents a configuration of an index that was not yet permanently saved.
@@ -31,7 +34,7 @@ class UnsavedIndexConfiguration implements IndexInterface, UnsavedConfigurationI
   /**
    * The shared temporary storage to use.
    *
-   * @var \Drupal\user\SharedTempStore
+   * @var \Drupal\Core\TempStore\SharedTempStore
    */
   protected $tempStore;
 
@@ -45,7 +48,7 @@ class UnsavedIndexConfiguration implements IndexInterface, UnsavedConfigurationI
   /**
    * The lock information for this configuration.
    *
-   * @var object|null
+   * @var \Drupal\Core\TempStore\Lock|null
    */
   protected $lock;
 
@@ -61,7 +64,7 @@ class UnsavedIndexConfiguration implements IndexInterface, UnsavedConfigurationI
    *
    * @param \Drupal\search_api\IndexInterface $index
    *   The index to proxy.
-   * @param \Drupal\user\SharedTempStore $temp_store
+   * @param \Drupal\Core\TempStore\SharedTempStore $temp_store
    *   The shared temporary storage to use.
    * @param int|string $current_user_id
    *   Either the UID of the currently logged-in user, or the session ID (for
@@ -115,7 +118,7 @@ class UnsavedIndexConfiguration implements IndexInterface, UnsavedConfigurationI
    */
   public function isLocked() {
     if ($this->lock) {
-      return $this->lock->owner != $this->currentUserId;
+      return $this->lock->getOwnerId() != $this->currentUserId;
     }
     return FALSE;
   }
@@ -127,15 +130,24 @@ class UnsavedIndexConfiguration implements IndexInterface, UnsavedConfigurationI
     if (!$this->lock) {
       return NULL;
     }
-    $uid = is_numeric($this->lock->owner) ? $this->lock->owner : 0;
-    return $this->getEntityTypeManager()->getStorage('user')->load($uid);
+    $owner_id = $this->lock->getOwnerId();
+    $uid = is_numeric($owner_id) ? $owner_id : 0;
+    try {
+      return $this->getEntityTypeManager()->getStorage('user')->load($uid);
+    }
+    catch (InvalidPluginDefinitionException $e) {
+      return NULL;
+    }
+    catch (PluginNotFoundException $e) {
+      return NULL;
+    }
   }
 
   /**
    * {@inheritdoc}
    */
   public function getLastUpdated() {
-    return $this->lock ? $this->lock->updated : NULL;
+    return $this->lock ? $this->lock->getUpdated() : NULL;
   }
 
   /**
@@ -598,6 +610,13 @@ class UnsavedIndexConfiguration implements IndexInterface, UnsavedConfigurationI
   /**
    * {@inheritdoc}
    */
+  public function rebuildTracker() {
+    $this->entity->rebuildTracker();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function isReindexing() {
     return $this->entity->isReindexing();
   }
@@ -852,8 +871,13 @@ class UnsavedIndexConfiguration implements IndexInterface, UnsavedConfigurationI
    * {@inheritdoc}
    */
   public function save() {
-    if ($this->tempStore->setIfOwner($this->entity->id(), $this->entity)) {
-      return SAVED_UPDATED;
+    try {
+      if ($this->tempStore->setIfOwner($this->entity->id(), $this->entity)) {
+        return SAVED_UPDATED;
+      }
+    }
+    catch (TempStoreException $e) {
+      throw new EntityStorageException('Could not save temporary index configuration: ' . $e->getMessage(), $e->getCode(), $e);
     }
     throw new EntityStorageException('Cannot save temporary index configuration: currently being edited by someone else.');
   }

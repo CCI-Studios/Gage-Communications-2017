@@ -1,14 +1,11 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\search_api_page\Entity\SearchApiPage.
- */
-
 namespace Drupal\search_api_page\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityBase;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\search_api\Entity\Index;
+use Drupal\search_api_page\Config\ViewMode;
 use Drupal\search_api_page\SearchApiPageInterface;
 
 /**
@@ -71,7 +68,7 @@ class SearchApiPage extends ConfigEntityBase implements SearchApiPageInterface {
   protected $clean_url = TRUE;
 
   /**
-   * Whether to show all resluts when no search is performed.
+   * Whether to show all results when no search is performed.
    *
    * @var bool
    */
@@ -96,7 +93,7 @@ class SearchApiPage extends ConfigEntityBase implements SearchApiPageInterface {
    *
    * @var array
    */
-  protected $searched_fields = array();
+  protected $searched_fields = [];
 
   /**
    * The style of the results.
@@ -110,7 +107,7 @@ class SearchApiPage extends ConfigEntityBase implements SearchApiPageInterface {
    *
    * @var array
    */
-  protected $view_mode_configuration = array();
+  protected $view_mode_configuration = [];
 
   /**
    * Whether to show the search form above search results.
@@ -118,6 +115,13 @@ class SearchApiPage extends ConfigEntityBase implements SearchApiPageInterface {
    * @var bool
    */
   protected $show_search_form = TRUE;
+
+  /**
+   * The query parse mode.
+   *
+   * @var string
+   */
+  protected $parse_mode = 'direct';
 
   /**
    * {@inheritdoc}
@@ -167,15 +171,17 @@ class SearchApiPage extends ConfigEntityBase implements SearchApiPageInterface {
    * {@inheritdoc}
    */
   public function getFulltextFields() {
-    $fields = array();
-    if (!empty($this->index)) {
-      /* @var  $index \Drupal\search_api\IndexInterface */
-      $index = Index::load($this->index);
+    if (empty($this->index)) {
+      return [];
+    }
 
-      $fields_info = $index->getFields();
-      foreach ($index->getFulltextFields() as $field_id) {
-        $fields[$field_id] = $fields_info[$field_id]->getPrefixedLabel();
-      }
+    /* @var  $index \Drupal\search_api\IndexInterface */
+    $index = Index::load($this->index);
+
+    $fields = [];
+    $fields_info = $index->getFields();
+    foreach ($index->getFulltextFields() as $field_id) {
+      $fields[$field_id] = $fields_info[$field_id]->getPrefixedLabel();
     }
 
     return $fields;
@@ -192,21 +198,36 @@ class SearchApiPage extends ConfigEntityBase implements SearchApiPageInterface {
    * {@inheritdoc}
    */
   public function getViewModeConfiguration() {
-    return $this->view_mode_configuration;
+    /* @var $index \Drupal\search_api\IndexInterface */
+    $index = Index::load($this->getIndex());
+    if ($index === NULL) {
+      return [];
+    }
+
+    $config = [];
+    foreach ($index->getDatasources() as $dataSourceId => $datasource) {
+      $bundles = $datasource->getBundles();
+      foreach ($bundles as $id => $label) {
+        $config[$dataSourceId . '_' . $id] = $this->getViewModeConfig()
+          ->getViewMode($dataSourceId, $id);
+      }
+    }
+
+    return $config;
   }
 
   /**
    * {@inheritdoc}
    */
   public function renderAsViewModes() {
-    return $this->getStyle() == 'view_modes';
+    return $this->getStyle() === 'view_modes';
   }
 
   /**
    * {@inheritdoc}
    */
   public function renderAsSnippets() {
-    return $this->getStyle() == 'search_results';
+    return $this->getStyle() === 'search_results';
   }
 
   /**
@@ -221,6 +242,28 @@ class SearchApiPage extends ConfigEntityBase implements SearchApiPageInterface {
    */
   public function showAllResultsWhenNoSearchIsPerformed() {
     return $this->show_all_when_no_keys;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getViewModeConfig() {
+    return new ViewMode($this->view_mode_configuration);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getParseMode() {
+    return $this->parse_mode;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function postDelete(EntityStorageInterface $storage, array $entities) {
+    parent::postDelete($storage, $entities);
+    \Drupal::service('router.builder')->rebuild();
   }
 
 }

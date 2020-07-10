@@ -132,7 +132,7 @@ class SerializationTest extends KernelTestBase {
     $query = $this->createTestQuery();
     // Since Drupal's DB layer sometimes has problems with side-effects of
     // __toString(), we here try to make sure this won't happen to us.
-    $this->assertInternalType('string', (string) $query);
+    $this->assertIsString((string) $query);
 
     $clone = clone $query;
 
@@ -314,11 +314,11 @@ class SerializationTest extends KernelTestBase {
   protected function setMockIndexStorage() {
     $index = $this->createTestIndex();
 
-    $storage = $this->getMock(EntityStorageInterface::class);
+    $storage = $this->createMock(EntityStorageInterface::class);
     $storage->method('load')->willReturnMap([
       [$index->id(), $index],
     ]);
-    $entity_type_manager = $this->getMock(EntityTypeManagerInterface::class);
+    $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
     $entity_type_manager->method('getStorage')->willReturnMap([
       ['search_api_index', $storage],
     ]);

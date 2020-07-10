@@ -7,6 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Render\ElementInfoManagerInterface;
+use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\search_api\Item\FieldInterface;
 use Drupal\search_api\Utility\DataTypeHelperInterface;
 use Drupal\search_api\Plugin\PluginFormTrait;
@@ -41,7 +42,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * - preprocess_index
  * - preprocess_query
  */
-abstract class FieldsProcessorPluginBase extends ProcessorPluginBase implements PluginFormInterface {
+abstract class FieldsProcessorPluginBase extends ProcessorPluginBase implements PluginFormInterface, TrustedCallbackInterface {
 
   use PluginFormTrait;
 
@@ -116,6 +117,13 @@ abstract class FieldsProcessorPluginBase extends ProcessorPluginBase implements 
   public function setElementInfoManager(ElementInfoManagerInterface $element_info_manager) {
     $this->elementInfoManager = $element_info_manager;
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function trustedCallbacks() {
+    return ['preRenderFieldsCheckboxes'];
   }
 
   /**
@@ -421,17 +429,17 @@ abstract class FieldsProcessorPluginBase extends ProcessorPluginBase implements 
           $empty_string = $value === '';
           $this->processConditionValue($value);
 
-          // The (NOT) BETWEEN operators deserve special attention, as it seems
-          // unlikely that it makes sense to completely remove them. Processors
-          // that remove values are normally indicating that this value can't be
-          // in the index – but that's irrelevant for (NOT) BETWEEN conditions,
-          // as any value between the two bounds could still be included. We
-          // therefore never remove a (NOT) BETWEEN condition and also ignore it
-          // when one of the two values got removed. (Note that this check will
-          // also catch empty strings.) Processors who need different behavior
-          // have to override this method.
+          // Conditions with (NOT) BETWEEN operator deserve special attention,
+          // as it seems unlikely that it makes sense to completely remove them.
+          // Processors that remove values are normally indicating that this
+          // value can't be in the index – but that's irrelevant for (NOT)
+          // BETWEEN conditions, as any value between the two bounds could still
+          // be included. We therefore never remove a (NOT) BETWEEN condition
+          // and also ignore it when one of the two values got removed.
+          // Processors who need different behavior have to override this
+          // method.
           $between_operator = in_array($condition->getOperator(), ['BETWEEN', 'NOT BETWEEN']);
-          if ($between_operator && count($value) < 2) {
+          if ($between_operator && (!is_array($value) || count($value) < 2)) {
             continue;
           }
 

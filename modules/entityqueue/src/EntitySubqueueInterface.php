@@ -4,12 +4,15 @@ namespace Drupal\entityqueue;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityPublishedInterface;
+use Drupal\Core\Entity\RevisionLogInterface;
 use Drupal\user\EntityOwnerInterface;
 
 /**
- * Provides an interface defining a EntityQueue entity.
+ * Provides an interface defining a EntitySubqueue entity.
  */
-interface EntitySubqueueInterface extends ContentEntityInterface, EntityChangedInterface, EntityOwnerInterface {
+interface EntitySubqueueInterface extends ContentEntityInterface, EntityChangedInterface, EntityOwnerInterface, EntityPublishedInterface, RevisionLogInterface {
 
   /**
    * Returns the subqueue's parent queue entity.
@@ -28,6 +31,47 @@ interface EntitySubqueueInterface extends ContentEntityInterface, EntityChangedI
    * @return $this
    */
   public function setQueue(EntityQueueInterface $queue);
+
+  /**
+   * Adds an entity to a subqueue.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   An entity object.
+   *
+   * @return $this
+   */
+  public function addItem(EntityInterface $entity);
+
+  /**
+   * Removes an entity from a subqueue.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   An entity object.
+   *
+   * @return $this
+   */
+  public function removeItem(EntityInterface $entity);
+
+  /**
+   * Reverses the items of this subqueue.
+   *
+   * @return $this
+   */
+  public function reverseItems();
+
+  /**
+   * Shuffles the items of this subqueue.
+   *
+   * @return $this
+   */
+  public function shuffleItems();
+
+  /**
+   * Removes all the items from this subqueue.
+   *
+   * @return $this
+   */
+  public function clearItems();
 
   /**
    * Gets the subqueue title.

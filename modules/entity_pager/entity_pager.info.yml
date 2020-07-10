@@ -4,11 +4,11 @@ description: 'Provides Next and Previous navigation on entities.'
 # core: 8.x
 package: Navigation
 dependencies:
-  - views
-  - token
+  - drupal:views
+  - token:token
 
-# Information added by Drupal.org packaging script on 2017-05-05
-version: '8.x-1.0-alpha2'
+# Information added by Drupal.org packaging script on 2019-06-12
+version: '8.x-1.0-beta3'
 core: '8.x'
 project: 'entity_pager'
-datestamp: 1493961194
+datestamp: 1560373685

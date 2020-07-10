@@ -12,14 +12,18 @@ focal_point.settings:
 image.effect.focal_point_scale_and_crop:
   type: image_size
   label: 'Focal Point Scale and Crop'
+  mapping:
+    crop_type:
+      type: string
+      label: 'Crop type to be used with Focal point'
 
 image.effect.focal_point_crop:
   type: image_size
   label: 'Focal Point Crop'
   mapping:
-    anchor:
-      label: 'Anchor'
+    crop_type:
       type: string
+      label: 'Crop type to be used with Focal point'
 
 field.widget.settings.image_focal_point:
   type: mapping

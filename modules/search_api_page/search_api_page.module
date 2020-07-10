@@ -19,11 +19,13 @@ use Drupal\user\EntityOwnerInterface;
  * @see \Drupal\search_api_page\Form\SearchApiPageBlockForm
  */
 function search_api_page_form_search_api_page_block_form_alter(&$form, FormStateInterface $form_state) {
-  if ($form['#method'] == 'get') {
-    $form['form_build_id']['#access'] = FALSE;
-    $form['form_token']['#access'] = FALSE;
-    $form['form_id']['#access'] = FALSE;
+  if ($form['#method'] !== 'get') {
+    return;
   }
+
+  $form['form_build_id']['#access'] = FALSE;
+  $form['form_token']['#access'] = FALSE;
+  $form['form_id']['#access'] = FALSE;
 }
 
 /**
@@ -61,11 +63,11 @@ function search_api_page_form_config_translation_delete_form_alter(&$form, FormS
  */
 function search_api_page_config_translation_change_form(&$form, FormStateInterface $form_state) {
   $route_name = \Drupal::routeMatch()->getRouteName();
-  $routes = array(
+  $routes = [
     'config_translation.item.add.entity.search_api_page.edit_form',
     'config_translation.item.edit.entity.search_api_page.edit_form',
     'config_translation.item.delete.entity.search_api_page.edit_form',
-  );
+  ];
   if (in_array($route_name, $routes)) {
     $form['#submit'][] = 'search_api_page_config_translation_change_form_submit';
   }
@@ -84,9 +86,9 @@ function search_api_page_config_translation_change_form_submit($form, FormStateI
  * Implements hook_theme().
  */
 function search_api_page_theme() {
-  return array(
-    'search_api_page' => array(
-      'variables' => array(
+  return [
+    'search_api_page' => [
+      'variables' => [
         'form' => NULL,
         'search_title' => NULL,
         'no_of_results' => NULL,
@@ -94,15 +96,15 @@ function search_api_page_theme() {
         'search_help' => NULL,
         'results' => NULL,
         'pager' => NULL,
-      ),
-    ),
-    'search_api_page_result' => array(
-      'variables' => array(
+      ],
+    ],
+    'search_api_page_result' => [
+      'variables' => [
         'item' => NULL,
         'entity' => NULL,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 }
 
 /**
@@ -114,11 +116,16 @@ function template_preprocess_search_api_page_result(&$variables) {
   /* @var $item \Drupal\search_api\Item\ItemInterface */
   $item = $variables['item'];
 
-  $variables['snippet'] = array('#markup' => $item->getExcerpt());
-  $variables['url'] = $entity->url();
+  $variables['snippet'] = ['#markup' => $item->getExcerpt()];
   $variables['title'] = $entity->label();
+  if ($entity instanceof \Drupal\file\Entity\File) {
+    $variables['url'] = $entity->url();
+  }
+  else {
+    $variables['url'] = $entity->toUrl()->toString();
+  }
 
-  $info = array();
+  $info = [];
   if ($entity instanceof EntityOwnerInterface) {
     $info['user'] = $entity->getOwner()->label();
   }

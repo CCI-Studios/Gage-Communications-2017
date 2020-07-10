@@ -2,17 +2,16 @@
 
 namespace Drupal\search_api_db\Tests\Update;
 
+use Drupal\FunctionalTests\Update\UpdatePathTestBase;
 use Drupal\search_api_db\Tests\DatabaseTestsTrait;
-use Drupal\system\Tests\Update\UpdatePathTestBase;
 
 /**
  * Tests whether search_api_db_update_8102() works correctly.
  *
  * @group search_api
+ * @group legacy
  *
  * @see https://www.drupal.org/node/2884451
- *
- * @todo Change parent class once we depend on Drupal 8.4+.
  */
 class SearchApiDbUpdate8102Test extends UpdatePathTestBase {
 
@@ -45,7 +44,7 @@ class SearchApiDbUpdate8102Test extends UpdatePathTestBase {
    */
   protected function setDatabaseDumpFiles() {
     $this->databaseDumpFiles = [
-      DRUPAL_ROOT . '/core/modules/system/tests/fixtures/update/drupal-8.bare.standard.php.gz',
+      DRUPAL_ROOT . '/core/modules/system/tests/fixtures/update/drupal-8.8.0.bare.standard.php.gz',
       __DIR__ . '/../../../tests/fixtures/update/search-api-db-base.php',
       __DIR__ . '/../../../tests/fixtures/update/search-api-db-update-8102.php',
     ];

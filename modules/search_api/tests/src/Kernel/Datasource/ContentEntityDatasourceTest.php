@@ -48,7 +48,7 @@ class ContentEntityDatasourceTest extends KernelTestBase {
   /**
    * The datasource used for testing.
    *
-   * @var \Drupal\search_api\Plugin\search_api\datasource\EntityDatasourceInterface
+   * @var \Drupal\search_api\Plugin\search_api\datasource\ContentEntity
    */
   protected $datasource;
 
@@ -170,6 +170,61 @@ class ContentEntityDatasourceTest extends KernelTestBase {
   }
 
   /**
+   * Tests viewing of items.
+   *
+   * @covers ::viewItem
+   * @covers ::viewMultipleItems
+   */
+  public function testItemViewing() {
+    $loaded_items = $this->datasource->loadMultiple($this->allItemIds);
+    $builder = \Drupal::entityTypeManager()
+      ->getViewBuilder('entity_test_mulrev_changed');
+
+    $item = $loaded_items['1:l0'];
+    $build = $this->datasource->viewItem($item, 'foobar');
+    $expected = [
+      '#entity_test_mulrev_changed' => $item->getValue(),
+      '#view_mode' => 'foobar',
+      '#cache' => [
+        'tags' => [
+          'entity_test_mulrev_changed:1',
+          'entity_test_mulrev_changed_view',
+        ],
+        'contexts' => [],
+        'max-age' => -1,
+      ],
+      '#weight' => 0,
+      '#pre_render' => [
+        [$builder, 'build'],
+      ],
+    ];
+    $this->assertEquals($expected, $build);
+
+    $build = $this->datasource->viewMultipleItems($loaded_items, 'foobar');
+    $this->assertTrue($build['#sorted']);
+    $this->assertEquals([[$builder, 'buildMultiple']], $build['#pre_render']);
+    foreach ($loaded_items as $item_id => $item) {
+      /** @var \Drupal\Core\Entity\EntityInterface $entity */
+      $entity = $item->getValue();
+      $expected = [
+        '#entity_test_mulrev_changed' => $entity,
+        '#view_mode' => 'foobar',
+        '#cache' => [
+          'tags' => [
+            'entity_test_mulrev_changed:' . $entity->id(),
+            'entity_test_mulrev_changed_view',
+          ],
+          'contexts' => [],
+          'max-age' => -1,
+        ],
+      ];
+      $this->assertArrayHasKey('#weight', $build[$item_id]);
+      unset($build[$item_id]['#weight']);
+      $this->assertEquals($expected, $build[$item_id]);
+    }
+  }
+
+  /**
    * Verifies that paged item discovery works correctly.
    *
    * @covers ::getPartialItemIds
@@ -239,11 +294,11 @@ class ContentEntityDatasourceTest extends KernelTestBase {
    * @return string[]
    *   All discovered item IDs.
    *
-   * @see \Drupal\search_api\Plugin\search_api\datasource\EntityDatasourceInterface::getPartialItemIds()
+   * @see \Drupal\search_api\Plugin\search_api\datasource\ContentEntity::getPartialItemIds()
    */
   protected function getItemIds(array $bundles = NULL, array $languages = NULL) {
     $discovered_ids = [];
-    for ($page = 0; ; ++$page) {
+    for ($page = 0;; ++$page) {
       $new_ids = $this->datasource->getPartialItemIds($page, $bundles, $languages);
       if ($new_ids === NULL) {
         break;

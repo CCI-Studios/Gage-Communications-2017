@@ -3,6 +3,7 @@
 namespace Drupal\entityqueue\Plugin\views\filter;
 
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\entityqueue\Plugin\views\relationship\EntityQueueRelationship;
 use Drupal\views\Plugin\views\filter\BooleanOperator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -24,6 +25,13 @@ class EntityQueueInQueue extends BooleanOperator {
   protected $currentUser;
 
   /**
+   * The messenger.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
+
+  /**
    * Constructor.
    *
    * @param array $configuration
@@ -34,11 +42,14 @@ class EntityQueueInQueue extends BooleanOperator {
    *   The plugin implementation definition.
    * @param \Drupal\Core\Session\AccountInterface $current_user
    *   The current user.
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   The messenger.
    */
-  public function __construct(array $configuration, $plugin_id, array $plugin_definition, AccountInterface $current_user) {
+  public function __construct(array $configuration, $plugin_id, array $plugin_definition, AccountInterface $current_user, MessengerInterface $messenger) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->currentUser = $current_user;
+    $this->messenger = $messenger;
   }
 
   /**
@@ -49,7 +60,8 @@ class EntityQueueInQueue extends BooleanOperator {
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('current_user')
+      $container->get('current_user'),
+      $container->get('messenger')
     );
   }
 
@@ -75,14 +87,17 @@ class EntityQueueInQueue extends BooleanOperator {
     if ($entity_queue_relationship) {
       $subqueue_items_table_alias = $entity_queue_relationship->first_alias;
       $field_field = $this->definition['field field'];
-      $operator  = $this->value ? 'IS NOT NULL' : 'IS NULL';
+      $operator = $this->value ? 'IS NOT NULL' : 'IS NULL';
       $condition = "$subqueue_items_table_alias.$field_field $operator";
 
       $this->query->addWhereExpression($this->options['group'], $condition);
     }
     else {
       if ($this->currentUser->hasPermission('administer views')) {
-        drupal_set_message($this->t('In order to filter on items from the queue, you need to add the Entityqueue: Queue relationship on View: @view with display: @display', ['@view' => $this->view->storage->label(), '@display' => $this->view->current_display]), 'error');
+        $this->messenger->addMessage($this->t('In order to filter on items from the queue, you need to add an <em>Entityqueue</em> relationship on the %display display of the %view view.', [
+          '%view' => $this->view->storage->label(),
+          '%display' => $this->view->current_display,
+        ]), MessengerInterface::TYPE_ERROR);
       }
     }
   }

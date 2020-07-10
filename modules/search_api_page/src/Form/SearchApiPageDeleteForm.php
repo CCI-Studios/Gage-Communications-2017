@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\search_api_page\Form\SearchApiPageDeleteForm.
- */
-
 namespace Drupal\search_api_page\Form;
 
 use Drupal\Core\Entity\EntityDeleteForm;
@@ -20,7 +15,7 @@ class SearchApiPageDeleteForm extends EntityDeleteForm {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Are you sure you want to delete %name?', array('%name' => $this->entity->label()));
+    return $this->t('Are you sure you want to delete %name?', ['%name' => $this->entity->label()]);
   }
 
   /**
@@ -43,7 +38,7 @@ class SearchApiPageDeleteForm extends EntityDeleteForm {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->entity->delete();
 
-    drupal_set_message($this->t('@search_page_page_label has been deleted.', ['@search_page_page_label' => $this->entity->label()]));
+    $this->messenger()->addMessage($this->t('@search_page_page_label has been deleted.', ['@search_page_page_label' => $this->entity->label()]));
 
     // Trigger router rebuild.
     \Drupal::service('router.builder')->rebuild();

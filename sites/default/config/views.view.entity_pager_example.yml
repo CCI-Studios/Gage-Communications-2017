@@ -15,7 +15,6 @@ description: 'This demonstrates a basic use case for Entity Pager.'
 tag: ''
 base_table: node_field_data
 base_field: nid
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -57,14 +56,13 @@ display:
         type: entity_pager
         options:
           grouping: {  }
-          next_prev:
-            link_next: 'next >'
-            link_prev: '< prev'
-            link_all_url: '<front>'
-            link_all_text: Home
-            display_all: 1
-            display_count: 1
-            log_performance: 1
+          link_next: 'next >'
+          link_prev: '< prev'
+          link_all_url: '<front>'
+          link_all_text: Home
+          display_all: 1
+          display_count: 1
+          log_performance: 1
       row:
         type: fields
       fields:
@@ -145,6 +143,8 @@ display:
           id: status
           expose:
             operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
           group: 1
       sorts:
         created:
