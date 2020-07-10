@@ -84,8 +84,8 @@
 <div{{ attributes.addClass(classes).removeAttribute("role") }}>
 
   <div{{ content_attributes.addClass('node__content') }}>
-    {% if node.field_link.0 %}
-      <a href="{{ node.field_link.0.value }}" target="_blank">
+    {% if node.field_link.0.url %}
+      <a href="{{ node.field_link.0.url }}" target="_blank">
     {% endif %}
     <img src="{{ node.field_image[0].entity.uri.value | image_style('client_logo') }}" alt="{{ node.getTitle }}" />
     {% if node.field_link.0 %}
