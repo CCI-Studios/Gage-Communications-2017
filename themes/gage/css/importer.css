@@ -394,67 +394,96 @@ button[type=submit] {
 
 .block--footer-logo {
   float: left;
-  margin-right: 45px; }
+  margin-right: 120px; }
+  @media (max-width: 1240px) {
+    .block--footer-logo {
+      margin-right: 40px; } }
   @media (max-width: 1140px) {
     .block--footer-logo {
       float: none;
-      margin: 0 0 60px 0;
+      margin: 0 0 80px 0;
       text-align: center; } }
+  .block--footer-logo img {
+    display: inline-block;
+    height: 60px;
+    width: auto; }
 
 .block--footer-find-us {
   float: left;
   position: relative;
-  padding: 20px 45px 20px 250px;
-  background: url(../images/bg-findus.png) no-repeat top left;
-  margin-right: 45px; }
+  padding: 0 0 0 250px;
+  background: url(../images/location-outline.svg) no-repeat top left;
+  background-size: 225px auto;
+  margin-right: 30px;
+  margin-bottom: 30px;
+  min-height: 170px; }
   @media (max-width: 1140px) {
     .block--footer-find-us {
       margin-right: 25px;
       padding-right: 0; } }
+  @media (max-width: 640px) {
+    .block--footer-find-us {
+      box-sizing: border-box;
+      width: 100%;
+      float: none;
+      padding-right: 0;
+      margin-right: 0; } }
   @media (max-width: 480px) {
     .block--footer-find-us {
-      float: none;
-      margin-right: -25px;
-      padding-right: 25px;
-      padding-left: 150px;
-      background: url(../images/bg-findus2.png) no-repeat top left; } }
+      padding-left: 150px; } }
   @media (max-width: 370px) {
     .block--footer-find-us {
       padding-left: 110px; } }
   .block--footer-find-us h2 {
     line-height: 1;
     margin-bottom: 25px;
-    background: black; }
+    background: black;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white; }
   .block--footer-find-us p {
-    font-size: 1.0625em;
+    font-size: 16px;
     line-height: 2;
-    background: black; }
+    background: black;
+    margin-bottom: 1.5em; }
+  @media (min-width: 640px) {
+    .block--footer-find-us .field--name-body {
+      width: 100%;
+      max-width: 400px; }
+    .block--footer-find-us .address1 {
+      float: left;
+      width: 170px;
+      border-right: 1px solid white;
+      padding-right: 25px;
+      margin-right: 25px; }
+    .block--footer-find-us .address2 {
+      float: left;
+      width: 179px; } }
 
 .block--footer-contact-us {
   float: right;
   position: relative;
-  width: 300px;
-  padding: 20px 0; }
+  width: 240px;
+  padding: 0; }
   @media (max-width: 1140px) {
     .block--footer-contact-us {
       width: 275px; } }
-  @media (max-width: 480px) {
+  @media (max-width: 1024px) {
+    .block--footer-contact-us {
+      float: left;
+      clear: left;
+      padding-left: 250px; } }
+  @media (max-width: 640px) {
     .block--footer-contact-us {
       float: none;
-      width: auto; } }
-  .block--footer-contact-us:before {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 68px;
-    width: 100%;
-    border-top: 1px solid white; }
+      width: 100%;
+      padding-left: 0; } }
   .block--footer-contact-us h2 {
     line-height: 1;
-    margin-bottom: 25px; }
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white; }
   .block--footer-contact-us p {
-    font-size: 1.0625em;
+    font-size: 16px;
     line-height: 2; }
   .block--footer-contact-us .ig, .block--footer-contact-us .in, .block--footer-contact-us .tw, .block--footer-contact-us .fb {
     font-size: 0;

@@ -58,16 +58,26 @@
 .block--footer-logo
 {
   float: left;
-  margin-right: 45px;
+  margin-right: 120px;
 
   &
   {
+    @media (max-width: 1240px)
+    {
+      margin-right: 40px;
+    }
     @media (max-width: 1140px)
     {
       float: none;
-      margin: 0 0 60px 0;
+      margin: 0 0 80px 0;
       text-align: center;
     }
+  }
+  img
+  {
+    display: inline-block;
+    height: 60px;
+    width: auto;
   }
 }
 
@@ -75,9 +85,12 @@
 {
   float: left;
   position: relative;
-  padding: 20px 45px 20px 250px;
-  background: url(../images/bg-findus.png) no-repeat top left;
-  margin-right: 45px;
+  padding: 0 0 0 250px;
+  background: url(../images/location-outline.svg) no-repeat top left;
+  background-size: 225px auto;
+  margin-right: 30px;
+  margin-bottom: 30px;
+  min-height: 170px;
 
   &
   {
@@ -86,13 +99,17 @@
       margin-right: 25px;
       padding-right: 0;
     }
+    @media (max-width: 640px)
+    {
+      box-sizing: border-box;
+      width: 100%;
+      float: none;
+      padding-right: 0;
+      margin-right: 0;
+    }
     @media (max-width: 480px)
     {
-      float: none;
-      margin-right: -25px;
-      padding-right: 25px;
       padding-left: 150px;
-      background: url(../images/bg-findus2.png) no-repeat top left;
     }
     @media (max-width: 370px)
     {
@@ -105,12 +122,39 @@
     line-height: 1;
     margin-bottom: 25px;
     background: black;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
   }
   p
   {
-    font-size: 1.0625em;
+    font-size: 16px;
     line-height: 2;
     background: black;
+    margin-bottom: 1.5em;
+  }
+  &
+  {
+    @media (min-width: 640px)
+    {
+      .field--name-body
+      {
+        width: 100%;
+        max-width: 400px;
+      }
+      .address1
+      {
+        float: left;
+        width: 170px;
+        border-right: 1px solid white;
+        padding-right: 25px;
+        margin-right: 25px;
+      }
+      .address2
+      {
+        float: left;
+        width: 179px;
+      }
+    }
   }
 }
 
@@ -118,8 +162,8 @@
 {
   float: right;
   position: relative;
-  width: 300px;
-  padding: 20px 0;
+  width: 240px;
+  padding: 0;
 
   &
   {
@@ -127,32 +171,30 @@
     {
       width: 275px;
     }
-    @media (max-width: 480px)
+    @media (max-width: 1024px)
+    {
+      float: left;
+      clear: left;
+      padding-left: 250px;
+    }
+    @media (max-width: 640px)
     {
       float: none;
-      width: auto;
+      width: 100%;
+      padding-left: 0;
     }
-  }
-
-  &:before
-  {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 68px;
-    width: 100%;
-    border-top: 1px solid white;
   }
 
   h2
   {
     line-height: 1;
     margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
   }
   p
   {
-    font-size: 1.0625em;
+    font-size: 16px;
     line-height: 2;
   }
   .ig, .in, .tw, .fb
