@@ -41,22 +41,33 @@
   }
   .services
   {
-    margin-left: 0;
     list-style: none;
+    text-align: center;
+    margin: 75px 0 0 0;
+
+    &
+    {
+      @media (max-width: 940px)
+      {
+        margin: 0 -8px;
+      }
+    }
 
     li
     {
-      padding: 0 10% 0 250px;
-      margin: 60px 0 0 0;
-      position: relative;
-      
+      display: inline-block;
+      width: 150px;
+      margin: 0 40px 80px 40px;
+      vertical-align: top;
+      font-weight: bold;
+      font-size: 18px;
+
       &
       {
-        @media (max-width: 640px)
+        @media (max-width: 940px)
         {
-          padding: 120px 0 0 0;
-          max-width: 400px;
-          margin: 60px auto 0 auto;
+          width: 130px;
+          margin: 0 8px 60px 8px;
         }
       }
 
@@ -64,58 +75,76 @@
       {
         content: "";
         display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 250px;
+        height: 100px;
         background-repeat: no-repeat;
-        background-position: top center;
-
-        &
-        {
-          @media (max-width: 640px)
-          {
-            bottom: auto;
-            height: 120px;
-            width: 100%;
-            background-position: center center;
-          }
-        }
-      }
+        background-position: center center;
+        background-size: contain;
+        margin-bottom: 30px;
+      }      
     }
-    .pr:before
-    {
-      background-image: url(../images/icon-pr-black.svg);
-    }
-    .partnerships:before
-    {
-      background-image: url(../images/icon-partnerships-black.svg);
-    }
-    .seo:before
-    {
-      background-image: url(../images/icon-seo-black.svg);
-    }
-    .creative:before
-    {
-      background-image: url(../images/icon-creative-black.svg);
-    }
-    .media:before
-    {
-      background-image: url(../images/icon-media-black.svg);
-    }
-    h3
-    {
-      font-size: 1.4em;
-      margin-bottom: 0.4em;
-
-      &
-      {
-        @media (max-width: 640px)
-        {
-          text-align: center;
-        }
-      }
-    }
+  }
+  .brand:before
+  {
+    background-image: url(../images/icon-services-brand-black.svg);
+  }
+  .planning:before
+  {
+    background-image: url(../images/icon-services-planning-black.svg);
+  }
+  .key-message:before
+  {
+    background-image: url(../images/icon-services-key-message-black.svg);
+  }
+  .website:before
+  {
+    background-image: url(../images/icon-services-website-black.svg);
+  }
+  .design:before
+  {
+    background-image: url(../images/icon-services-design-black.svg);
+  }
+  .website-support:before
+  {
+    background-image: url(../images/icon-services-website-support-black.svg);
+  }
+  .pr:before
+  {
+    background-image: url(../images/icon-services-pr-black.svg);
+  }
+  .social-strategy:before
+  {
+    background-image: url(../images/icon-services-social-strategy-black.svg);
+  }
+  .social-management:before
+  {
+    background-image: url(../images/icon-services-social-management-black.svg);
+  }
+  .campaign:before
+  {
+    background-image: url(../images/icon-services-campaign-black.svg);
+  }
+  .events:before
+  {
+    background-image: url(../images/icon-services-events-black.svg);
+  }
+  .relationships:before
+  {
+    background-image: url(../images/icon-services-relationships-black.svg);
+  }
+  .ads:before
+  {
+    background-image: url(../images/icon-services-ads-black.svg);
+  }
+  .media-listening:before
+  {
+    background-image: url(../images/icon-services-media-listening-black.svg);
+  }
+  .content:before
+  {
+    background-image: url(../images/icon-services-content-black.svg);
+  }
+  .marketing-support:before
+  {
+    background-image: url(../images/icon-services-marketing-support-black.svg);
   }
 }

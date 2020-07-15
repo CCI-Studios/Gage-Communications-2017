@@ -31,6 +31,7 @@
   {
     list-style: none;
     text-align: center;
+    margin: 75px 0 0 0;
 
     &
     {
@@ -43,16 +44,18 @@
     li
     {
       display: inline-block;
-      width: 140px;
-      margin: 0 15px 30px 15px;
+      width: 150px;
+      margin: 0 15px 60px 15px;
       vertical-align: top;
+      font-weight: bold;
+      font-size: 18px;
 
       &
       {
         @media (max-width: 940px)
         {
-          width: 125px;
-          margin: 0 8px 30px 8px;
+          width: 130px;
+          margin: 0 8px 60px 8px;
         }
       }
 
@@ -60,39 +63,33 @@
       {
         content: "";
         display: block;
-        height: 120px;
+        height: 75px;
         background-repeat: no-repeat;
         background-position: center center;
-
-        &
-        {
-          @media (max-width: 940px)
-          {
-            height: 80px;
-          }
-        }
+        background-size: contain;
+        margin-bottom: 30px;
       }      
     }
   }
   .pr:before
   {
-    background-image: url(../images/icon-pr-white.svg);
+    background-image: url(../images/icon-services-pr-white.svg);
   }
-  .partnerships:before
+  .planning:before
   {
-    background-image: url(../images/icon-partnerships-white.svg);
+    background-image: url(../images/icon-services-planning-white.svg);
   }
-  .seo:before
+  .brand:before
   {
-    background-image: url(../images/icon-seo-white.svg);
+    background-image: url(../images/icon-services-brand-white.svg);
   }
-  .creative:before
+  .website:before
   {
-    background-image: url(../images/icon-creative-white.svg);
+    background-image: url(../images/icon-services-website-white.svg);
   }
-  .media:before
+  .ads:before
   {
-    background-image: url(../images/icon-media-white.svg);
+    background-image: url(../images/icon-services-ads-white.svg);
   }
 }
 
