@@ -10,16 +10,17 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  * A class for analyzing an entity pager and providing feedback.
  */
 class EntityPagerAnalyzer implements EntityPagerAnalyzerInterface {
+
   /**
    * The event dispatcher.
    *
-   * @var EventDispatcherInterface
+   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
    */
   protected $eventDispatcher;
 
   /**
-   * Constructs a new EntityPagerAnalyzer object
-   * .
+   * Constructs a new EntityPagerAnalyzer object.
+   *
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $eventDispatcher
    *   The event dispatcher.
    */
@@ -39,4 +40,5 @@ class EntityPagerAnalyzer implements EntityPagerAnalyzerInterface {
       \Drupal::logger('entity_pager')->notice($message);
     }
   }
+
 }

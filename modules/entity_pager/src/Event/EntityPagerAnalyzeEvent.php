@@ -6,20 +6,21 @@ use Drupal\entity_pager\EntityPagerInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Represents an EntityPagerAnalyzeEvent Event class.
- *
- * @package Drupal\entity_pager\Event
+ * Analyze event object.
  */
 class EntityPagerAnalyzeEvent extends Event {
 
   /**
+   * The entity pager being analyzed.
+   *
    * @var \Drupal\entity_pager\EntityPagerInterface
    */
   protected $entityPager;
 
   /**
+   * The log messages supplied.
+   *
    * @var array
-   *   The log messages supplied back to the event.
    */
   protected $logs = [];
 
@@ -84,4 +85,5 @@ class EntityPagerAnalyzeEvent extends Event {
       $this->logs[] = $message;
     }
   }
+
 }

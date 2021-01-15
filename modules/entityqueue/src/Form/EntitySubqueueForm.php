@@ -39,7 +39,7 @@ class EntitySubqueueForm extends ContentEntityForm {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager'),
+      $container->get('entity.repository'),
       $container->get('entity_type.bundle.info'),
       $container->get('datetime.time'),
       $container->get('element_info')
@@ -68,14 +68,6 @@ class EntitySubqueueForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function form(array $form, FormStateInterface $form_state) {
-    // Reverse the items in the admin form if the queue uses the 'Reverse order
-    // in admin view' option.
-    if ($this->entity->getQueue()->getReverseInAdmin()) {
-      $subqueue_items = $this->entity->get('items');
-      $items_values = $subqueue_items->getValue();
-      $subqueue_items->setValue(array_reverse($items_values));
-    }
-
     $form = parent::form($form, $form_state);
 
     $form['#title'] = $this->t('Edit subqueue %label', ['%label' => $this->entity->label()]);
@@ -203,11 +195,6 @@ class EntitySubqueueForm extends ContentEntityForm {
       $items_widget->extractFormValues($subqueue_items, $form, $form_state);
       $items_values = $subqueue_items->getValue();
 
-      // Revert the effect of the 'Reverse order in admin view' option.
-      if ($entity->getQueue()->getReverseInAdmin()) {
-        $items_values = array_reverse($items_values);
-      }
-
       switch ($op) {
         case 'reverse':
           $subqueue_items->setValue(array_reverse($items_values));
@@ -219,6 +206,11 @@ class EntitySubqueueForm extends ContentEntityForm {
           break;
 
         case 'clear':
+          // Set the items count to zero.
+          $parents = NestedArray::getValue($form, $path)['widget']['#field_parents'];
+          $field_state = WidgetBase::getWidgetState($parents, 'items', $form_state);
+          $field_state['items_count'] = 0;
+          WidgetBase::setWidgetState($parents, 'items', $form_state, $field_state);
           $subqueue_items->setValue(NULL);
           break;
       }
@@ -282,14 +274,6 @@ class EntitySubqueueForm extends ContentEntityForm {
    */
   public function save(array $form, FormStateInterface $form_state) {
     $subqueue = $this->entity;
-
-    // Revert the effect of the 'Reverse order in admin view' option.
-    if ($subqueue->getQueue()->getReverseInAdmin()) {
-      $subqueue_items = $subqueue->get('items');
-      $items_values = $subqueue_items->getValue();
-      $subqueue_items->setValue(array_reverse($items_values));
-    }
-
     $status = $subqueue->save();
 
     $edit_link = $subqueue->toLink($this->t('Edit'), 'edit-form')->toString();

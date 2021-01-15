@@ -7,8 +7,7 @@ use Drupal\entity_pager\Event\EntityPagerEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * A simple event subscriber that provides feedback about the current entity
- * used by the entity pager.
+ * Provides feedback about the current entity used by the entity pager.
  */
 class EntityAnalyzerSubscriber implements EventSubscriberInterface {
 
@@ -24,9 +23,10 @@ class EntityAnalyzerSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * Check if there is a valid entity for the pager.
+   * Checks if there is a valid entity for the pager.
    *
    * @param \Drupal\entity_pager\Event\EntityPagerAnalyzeEvent $event
+   *   The analyze event.
    */
   public function onEntityPagerAnalyze(EntityPagerAnalyzeEvent $event) {
     $entity = $event->getEntityPager()->getEntity();
@@ -35,4 +35,5 @@ class EntityAnalyzerSubscriber implements EventSubscriberInterface {
       $event->log('No Entity on page.');
     }
   }
+
 }

@@ -8,8 +8,11 @@ namespace Drupal\entity_pager;
 interface EntityPagerAnalyzerInterface {
 
   /**
+   * Analyzes the given entity pager.
+   *
    * @param \Drupal\entity_pager\EntityPagerInterface $entityPager
-   * @return null
+   *   The entity pager to analyze.
    */
-  function analyze(EntityPagerInterface $entityPager);
+  public function analyze(EntityPagerInterface $entityPager);
+
 }

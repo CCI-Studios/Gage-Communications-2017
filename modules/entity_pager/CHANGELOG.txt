@@ -1,3 +1,14 @@
+Entity Pager 8.x-1.0-beta4, 2020-12-05
+--------------------------------------
+by Wongjn: Update changelog
+#3147341 by Project Update Bot: Automated Drupal 9 compatibility fixes
+#3185686 by Pooja Ganjage, Wongjn: Rewrite README.md to the Drupal template
+#3185903 by alvar0hurtad0, Panchuk: Remove composer.json
+
+Entity Pager 8.x-1.0-beta3, 2019-03-23
+--------------------------------------
+#3043003 by ddiestra, ccshannon, marassa: Pager not correctly determining current node/entity after beta2 update
+
 Entity Pager 8.x-1.0-beta2, 2019-03-23
 --------------------------------------
 #3003045 by chipway, alonaoneill: All dependencies must be prefixed

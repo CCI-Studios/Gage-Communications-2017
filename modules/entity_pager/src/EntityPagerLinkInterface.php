@@ -6,6 +6,7 @@ namespace Drupal\entity_pager;
  * An interface for a single Entity Pager Link.
  */
 interface EntityPagerLinkInterface {
+
   /**
    * Returns a render array for the link.
    *
@@ -13,4 +14,5 @@ interface EntityPagerLinkInterface {
    *   A render array for the link
    */
   public function getLink();
+
 }

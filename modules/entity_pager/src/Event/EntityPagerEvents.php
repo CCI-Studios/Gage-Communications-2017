@@ -6,15 +6,15 @@ namespace Drupal\entity_pager\Event;
  * Define events for the Entity Pager module.
  */
 final class EntityPagerEvents {
+
   /**
-   * Name of the event fired when analyzing an entity pager and registering
-   * feedback for the user.
+   * Analyzing event name.
    *
-   * Fired before the feedback is logged to Drupal.
-   *
-   * @Event
+   * This is fired when analyzing an entity pager, before the feedback is logged
+   * to Drupal. It is intended to be use to register feedback for the user.
    *
    * @see \Drupal\entity_pager\Event\EntityPagerAnalyzeEvent
    */
   const ENTITY_PAGER_ANALYZE = 'entity_pager.analyze';
+
 }

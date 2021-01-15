@@ -23,7 +23,7 @@ class ViewsPerformanceAnalyzerSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * Analyze the entity pager view for performance issues and provide feedback.
+   * Analyzes the entity pager view for performance issues and provide feedback.
    *
    * @param \Drupal\entity_pager\Event\EntityPagerAnalyzeEvent $event
    *   The Entity Pager Analyze event.
@@ -35,6 +35,7 @@ class ViewsPerformanceAnalyzerSubscriber implements EventSubscriberInterface {
       return;
     }
 
-    // TODO: Log performance issues about the view
+    // @todo Log performance issues about the view
   }
+
 }

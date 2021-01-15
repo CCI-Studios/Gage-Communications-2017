@@ -2,26 +2,24 @@
 
 namespace Drupal\entity_pager;
 
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\views\ViewExecutable;
-
 /**
- * Interface EntityPagerInterface.
+ * Defines an interface for an entity pager.
  */
 interface EntityPagerInterface {
 
   /**
    * Gets the view for the entity pager.
    *
-   * @return ViewExecutable
+   * @return \Drupal\views\ViewExecutable
    *   The view object.
    */
   public function getView();
 
   /**
-   * Gets an array of entity pager links.
+   * Gets an array of entity pager link render arrays.
    *
-   * @return array
+   * @return array[]
+   *   The link render arrays.
    */
   public function getLinks();
 
@@ -40,7 +38,7 @@ interface EntityPagerInterface {
   /**
    * Gets the entity object this entity pager is for.
    *
-   * @return EntityInterface|NULL
+   * @return \Drupal\Core\Entity\EntityInterface|null
    *   The entity object or NULL if no entity found.
    */
   public function getEntity();
@@ -49,6 +47,8 @@ interface EntityPagerInterface {
    * Returns the options this entity pager was created with.
    *
    * @return array
+   *   The options array.
    */
   public function getOptions();
-};
+
+}

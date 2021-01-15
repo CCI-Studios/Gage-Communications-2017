@@ -1,3 +1,5 @@
+# Schema for the configuration files of the Entity Pager module.
+
 views.style.entity_pager:
   type: views_style
   label: 'Entity Pager'

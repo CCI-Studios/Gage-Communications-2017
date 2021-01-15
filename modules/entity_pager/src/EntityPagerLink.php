@@ -14,21 +14,25 @@ class EntityPagerLink implements EntityPagerLinkInterface {
   use StringTranslationTrait;
 
   /**
-   * @var \Drupal\Core\Entity\EntityInterface|NULL
+   * The entity that this link is for.
+   *
+   * @var \Drupal\Core\Entity\EntityInterface|null
    */
-  var $entity;
+  public $entity;
 
   /**
+   * The link text.
+   *
    * @var string
    */
-  var $text;
+  public $text;
 
   /**
-   * EntityPagerLink constructor.
+   * Constructs an EntityPagerLink.
    *
    * @param string $text
-   *   The text of the link
-   * @param \Drupal\Core\Entity\EntityInterface|NULL $entity
+   *   The text of the link.
+   * @param \Drupal\Core\Entity\EntityInterface|null $entity
    *   The result row in the view to link to.
    */
   public function __construct($text, EntityInterface $entity = NULL) {
@@ -69,4 +73,5 @@ class EntityPagerLink implements EntityPagerLinkInterface {
       '#markup' => '<span class="inactive">' . $this->text . '</span>',
     ];
   }
+
 }

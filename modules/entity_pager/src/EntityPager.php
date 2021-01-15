@@ -11,32 +11,44 @@ use Drupal\views\ResultRow;
 use Drupal\views\ViewExecutable;
 
 /**
- * A class representing an entity pager.
+ * Entity pager object.
  */
 class EntityPager implements EntityPagerInterface {
 
   use StringTranslationTrait;
 
-  /** @var array The options. */
+  /**
+   * Entity pager options.
+   *
+   * @var array
+   */
   protected $options;
 
-  /** @var ViewExecutable The view executable. */
+  /**
+   * The executable for the view that the pager is attached to.
+   *
+   * @var \Drupal\views\ViewExecutable
+   */
   protected $view;
 
-  /** @var \Drupal\Core\Utility\Token The token service. */
+  /**
+   * The token service.
+   *
+   * @var \Drupal\Core\Utility\Token
+   */
   protected $token;
 
   /**
    * EntityPager constructor.
    *
-   * @param ViewExecutable $view
+   * @param \Drupal\views\ViewExecutable $view
    *   The view object.
    * @param array $options
    *   An array of options for the EntityPager.
    * @param \Drupal\Core\Utility\Token $token
    *   The token service.
    */
-  public function __construct(ViewExecutable $view, $options, Token $token) {
+  public function __construct(ViewExecutable $view, array $options, Token $token) {
     $this->view = $view;
     $this->options = $options;
     $this->token = $token;
@@ -71,9 +83,11 @@ class EntityPager implements EntityPagerInterface {
       $total = $this->getView()->total_rows;
       if ($total === 0) {
         $count = 'none';
-      } elseif ($total === 1) {
+      }
+      elseif ($total === 1) {
         $count = 'one';
-      } else {
+      }
+      else {
         $count = 'many';
       }
     }
@@ -123,10 +137,11 @@ class EntityPager implements EntityPagerInterface {
    *   The index of the active row, or FALSE
    */
   protected function getCurrentRow() {
-    /** @var ResultRow $result */
+    $entity = $this->getEntity();
+
+    /** @var \Drupal\views\ResultRow $result */
     foreach ($this->getView()->result as $index => $result) {
       $resultEntity = $this->getResultEntity($result);
-      $entity = $this->getEntity();
 
       if (!is_null($entity) && $resultEntity->id() === $entity->id()) {
         return $index;
@@ -173,14 +188,17 @@ class EntityPager implements EntityPagerInterface {
       $entity = $this->getEntity();
       $url = $this->detokenize($this->options['link_all_url'], $entity);
 
-      if (!in_array(substr($url, 0, 1), ['/', '#', '?'])) {
+      $url_scheme = parse_url($url, PHP_URL_SCHEME);
+      if (!$url_scheme && !in_array(substr($url, 0, 1), ['/', '#', '?'])) {
         $url = '/' . $url;
       }
 
       $link = [
         '#type' => 'link',
-        '#title' => ['#markup' => $this->detokenize($this->options['link_all_text'], $entity)],
-        '#url' => Url::fromUserInput($url),
+        '#title' => [
+          '#markup' => $this->detokenize($this->options['link_all_text'], $entity),
+        ],
+        '#url' => $url_scheme ? Url::fromUri($url) : Url::fromUserInput($url),
       ];
     }
 
@@ -201,14 +219,15 @@ class EntityPager implements EntityPagerInterface {
   protected function getLink($name, $offset = 0) {
     $row = $this->getResultRow($this->getCurrentRow() + $offset);
     $disabled = !is_object($row);
-    $entity = $disabled ? $this->getEntity() : $this->getResultEntity($row);
+    $entity = $disabled ? NULL : $this->getResultEntity($row);
 
     $title = $this->detokenize($this->options[$name], $entity);
 
     if (!$disabled || $this->options['show_disabled_links']) {
       $pager_link = new EntityPagerLink($title, $entity);
       $link = $pager_link->getLink();
-    } else {
+    }
+    else {
       $link = [];
     }
 
@@ -240,16 +259,17 @@ class EntityPager implements EntityPagerInterface {
   }
 
   /**
-   * Replace all tokens in provided string, supporting the current entity from
-   * the request object.
+   * Replaces all tokens in provided string.
+   *
+   * Supports the current entity from the request object.
    *
    * @param string $string
-   *   The string to detokenize.
-   * @param EntityInterface $entity
-   *   The entity to use for detokenization.
+   *   The string to de-tokenize.
+   * @param \Drupal\Core\Entity\EntityInterface|null $entity
+   *   The entity to use for de-tokenization.
    *
    * @return string
-   *   The detokenized string.
+   *   The de-tokenized string.
    */
   protected function detokenize($string, $entity) {
     if (is_null($entity)) {
@@ -261,7 +281,7 @@ class EntityPager implements EntityPagerInterface {
       $data[$entity->getEntityTypeId()] = $entity;
     }
 
-    return $this->token->replace($string, $data);
+    return $this->token->replace($string, $data, ['clear' => TRUE]);
   }
 
   /**

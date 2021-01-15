@@ -2,10 +2,10 @@
 
 namespace Drupal\entity_pager\Plugin\views\style;
 
-use Drupal\Core\Annotation\Translation;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\views\Annotation\ViewsStyle;
+use Drupal\Core\Url;
 use Drupal\views\Plugin\views\style\StylePluginBase;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 /**
  * Style plugin to render a view for an Entity Pager.
@@ -21,12 +21,25 @@ use Drupal\views\Plugin\views\style\StylePluginBase;
  * )
  */
 class EntityPager extends StylePluginBase {
+
+  /**
+   * {@inheritdoc}
+   */
   protected $usesRowPlugin = FALSE;
 
+  /**
+   * {@inheritdoc}
+   */
   protected $usesRowClass = FALSE;
 
+  /**
+   * {@inheritdoc}
+   */
   protected $usesFields = TRUE;
 
+  /**
+   * {@inheritdoc}
+   */
   protected $usesOptions = TRUE;
 
   /**
@@ -72,17 +85,17 @@ class EntityPager extends StylePluginBase {
     $defaults = $this->getDefaultOptions();
 
     return parent::defineOptions() + [
-        'relationship' => ['default' => $defaults['relationship']],
-        'link_next' => ['default' => $defaults['link_next']],
-        'link_prev' => ['default' => $defaults['link_prev']],
-        'link_all_url' => ['default' => $defaults['link_all_url']],
-        'link_all_text' => ['default' => $defaults['link_all_text']],
-        'display_all' => ['default' => $defaults['display_all']],
-        'display_count' => ['default' => $defaults['display_count']],
-        'show_disabled_links' => ['default' => $defaults['show_disabled_links']],
-        'circular_paging' => ['default' => $defaults['circular_paging']],
-        'log_performance' => ['default' => $defaults['log_performance']],
-      ];
+      'relationship' => ['default' => $defaults['relationship']],
+      'link_next' => ['default' => $defaults['link_next']],
+      'link_prev' => ['default' => $defaults['link_prev']],
+      'link_all_url' => ['default' => $defaults['link_all_url']],
+      'link_all_text' => ['default' => $defaults['link_all_text']],
+      'display_all' => ['default' => $defaults['display_all']],
+      'display_count' => ['default' => $defaults['display_count']],
+      'show_disabled_links' => ['default' => $defaults['show_disabled_links']],
+      'circular_paging' => ['default' => $defaults['circular_paging']],
+      'log_performance' => ['default' => $defaults['log_performance']],
+    ];
   }
 
   /**
@@ -108,6 +121,7 @@ class EntityPager extends StylePluginBase {
       '#description' => $this->t('The text to display for the Next link. HTML is allowed.'),
       '#type' => 'textfield',
       '#default_value' => $this->getOption('link_next'),
+      '#maxlength' => NULL,
     ];
 
     $form['link_prev'] = [
@@ -115,6 +129,7 @@ class EntityPager extends StylePluginBase {
       '#description' => $this->t('The text to display for the Previous link. HTML is allowed.'),
       '#type' => 'textfield',
       '#default_value' => $this->getOption('link_prev'),
+      '#maxlength' => NULL,
     ];
 
     $form['display_all'] = [
@@ -124,39 +139,48 @@ class EntityPager extends StylePluginBase {
       '#default_value' => $this->getOption('display_all'),
     ];
 
+    $token_help = NULL;
+    try {
+      $token_help = Url::fromRoute('help.page.token')->toString();
+    }
+    catch (RouteNotFoundException $e) {
+      // Noop.
+    }
+    $example_list = [
+      '#theme' => 'item_list',
+      '#items' => [
+        $this->t('The URL of a Views listing page of the Entities.'),
+        $this->t('%front for the homepage', ['%front' => '<front>']),
+        $token_help
+        ? $this->t('A <a href=":token_help">token</a> that relates to the Entity. (e.g. [node:edit-url]).', [':token_help' => $token_help])
+        : $this->t('A token that relates to the Entity. (e.g. [node:edit-url]).'),
+        $this->t('The token can also be an entity reference if the entity has one. (e.g. [node:field_company]).'),
+      ],
+    ];
+    $examples = \Drupal::service('renderer')->renderPlain($example_list);
     $form['link_all_url'] = [
       '#title' => $this->t('All link URL'),
-      '#description' => $this->t('The URL of the listing page link.<br>
-          Examples:
-          <ul>
-              <li>the URL of a Views listing page of the Entities.</li>
-              <li>@front for the homepage</li>
-              <li>a <a href="/admin/help/token">token</a> that relates to the Entity. (e.g. [node:edit-url])</li>
-              <li>The token can also be an entity reference if the entity has one. (e.g. [node:field_company])</li>
-          </ul>', ['@front' => '<front>']),
+      '#description' => $this->t('The URL of the listing page link. Examples:') . $examples,
       '#type' => 'textfield',
       '#default_value' => $this->getOption('link_all_url'),
+      '#maxlength' => NULL,
       '#states' => [
         'visible' => [
           ':input[name="style_options[display_all]"]' => ['checked' => TRUE],
-        ]
+        ],
       ],
     ];
 
     $form['link_all_text'] = [
       '#title' => $this->t('All link label'),
-      '#description' => $this->t("The label text to display for the List All link.
-          <ul>
-              <li>When an entity reference is used in the <strong>List All URL</strong> box above, just add the same entity reference in this box and the referenced entity title will automatically be displayed.</li>
-              <li>HTML is allowed.</li>
-          </ul>"
-      ),
+      '#description' => $this->t('The label text to display for the List All link. When an entity reference is used in the <strong>List All URL</strong> box above, just add the same entity reference in this box and the referenced entity title will automatically be displayed. HTML is allowed.'),
       '#type' => 'textfield',
       '#default_value' => $this->getOption('link_all_text'),
+      '#maxlength' => NULL,
       '#states' => [
         'visible' => [
           ':input[name="style_options[display_all]"]' => ['checked' => TRUE],
-        ]
+        ],
       ],
     ];
 
@@ -182,7 +206,7 @@ class EntityPager extends StylePluginBase {
       '#states' => [
         'visible' => [
           ':input[name="style_options[circular_paging]"]' => ['checked' => FALSE],
-        ]
+        ],
       ],
     ];
 
@@ -194,6 +218,12 @@ class EntityPager extends StylePluginBase {
     ];
   }
 
+  /**
+   * Gets any relationships in the view as options.
+   *
+   * @return string[]
+   *   Array of relationships, keyed by ID with the values of their Admin label.
+   */
   protected function getRelationshipOptions() {
     $executable = $this->view;
     $relationships = $executable->display_handler->getOption('relationships');
